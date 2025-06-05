@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Artbeat Institute</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Enhanced About Page Styles */
+    :root {
+      --primary-color: #40E0D0;
+      --secondary-color: #2c3e50;
+      --accent-color: #ff6b6b;
+      --text-color: #444;
+      --light-bg: #f9f9f9;
+      --transition: all 0.3s ease;
+    }
+
+    .page-hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/images/hero-bg.jpg') center/cover;
+      color: white;
+      text-align: center;
+      padding: 120px 20px;
+      margin-bottom: 60px;
+    }
+
+    .page-hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: -0.5px;
+      animation: fadeInDown 1s ease;
+      background: linear-gradient(45deg, #fff, #e0f7fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+    
+    .page-hero p {
+      font-size: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      opacity: 0.95;
+      animation: fadeInUp 1s ease;
+      font-weight: 400;
+      line-height: 1.6;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Founder Profile Styles */
+    .founder-profile {
+      display: flex;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      margin-bottom: 60px;
+    }
+
+    .founder-image {
+      flex: 1;
+      min-height: 500px;
+    }
+
+    .founder-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .founder-details {
+      flex: 1.5;
+      padding: 50px;
+    }
+
+    .founder-details h3 {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .founder-details .role {
+      color: #40E0D0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .founder-details .bio {
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+    }
+
+    .founder-details .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .founder-details .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: #f0f9f8;
+      color: #40E0D0;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .founder-details .social-links a:hover {
+      background: #40E0D0;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* CTA Section Enhancements */
+    .cta-section {
+      text-align: center;
+      padding: 80px 0;
+      background: linear-gradient(135deg, #40E0D0, #20B2AA);
+      color: white;
+    }
+    
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .btn i {
+      margin-left: 8px;
+    }
+    
+    .btn-primary {
+      background: #40E0D0;
+      color: white;
+      border: 2px solid #40E0D0;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+    
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* Newsletter Form */
+    .newsletter-form {
+      margin-top: 20px;
+    }
+    
+    .newsletter-input-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .newsletter-form input[type="email"]:focus {
+      border-color: #40E0D0;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.2);
+    }
+    
+    .newsletter-btn {
+      background: #40E0D0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .newsletter-btn:hover {
+      background: #35c9bb;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 992px) {
+      .founder-profile {
+        flex-direction: column;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .founder-image {
+        min-height: 400px;
+      }
+      
+      .founder-details {
+        padding: 40px 30px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .founder-details h3 {
+        font-size: 1.8rem;
+      }
+      
+      .founder-details .role {
+        font-size: 1.1rem;
+      }
+      
+      .founder-details {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Artbeat</a>
+      <button class="menu-btn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>About Artbeat Institute</h1>
+      <p>Where Creativity Meets Excellence in Art and Music Education</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" style="background-color: #f9f9f9; padding: 100px 0;">
+    <div class="container">
+      <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+        <h2 style="font-size: 2.8rem; color: var(--secondary-color); position: relative; display: inline-block; margin-bottom: 20px;">
+          <span style="color: var(--primary-color);">Our</span> Story
+          <span style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--primary-color); border-radius: 2px;"></span>
+        </h2>
+        <p style="font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.8;">
+          A journey of passion, creativity, and artistic excellence since 2015
+        </p>
+      </div>
+      <div class="about-content" style="background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); overflow: hidden; position: relative; z-index: 1;">
+        <div class="about-text" style="padding: 60px;">
+          <div style="position: relative; margin-bottom: 40px;">
+            <span style="position: absolute; top: -15px; left: 0; font-size: 6rem; font-weight: 800; color: rgba(64, 224, 208, 0.1); z-index: -1;">01</span>
+            <h2 style="font-size: 2.2rem; color: var(--secondary-color); position: relative; padding-bottom: 15px; margin-bottom: 20px;">
+              Our Story
+              <span style="position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background: var(--primary-color);"></span>
+            </h2>
+          </div>
+          <div style="position: relative; z-index: 2;">
+            <p style="font-size: 1.1rem; line-height: 1.9; color: var(--text-color); margin-bottom: 25px; position: relative; padding-left: 30px; border-left: 3px solid var(--primary-color);">
+              <span style="font-size: 1.3rem; color: var(--secondary-color); font-weight: 600;">Welcome to <span style="color: var(--primary-color);">Artbeat Institute of Drawing, Painting and Music</span></span>, a premier creative arts academy founded in 2015. What began as a small studio with a single classroom has blossomed into a thriving creative community that has nurtured thousands of students on their artistic journeys.
+            </p>
+            
+            <div style="display: flex; align-items: center; margin: 40px 0; background: linear-gradient(135deg, rgba(64, 224, 208, 0.1), rgba(255, 107, 107, 0.1)); padding: 30px; border-radius: 10px; position: relative; overflow: hidden;">
+              <div style="flex: 1; padding-right: 30px;">
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-color); margin-bottom: 20px; position: relative; z-index: 2;">
+                  Our founder, <strong style="color: var(--secondary-color);">Mr. M. Pavan Sagar</strong>, envisioned a space where creativity knows no bounds and where every individual can discover and develop their artistic voice.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-color); position: relative; z-index: 2; margin: 0;">
+                  Today, Artbeat stands as a testament to that vision, offering comprehensive programs in visual and performing arts.
+                </p>
+              </div>
+              <div style="width: 200px; flex-shrink: 0; display: none; /* Hidden on mobile */" class="founder-quote">
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); position: relative;">
+                  <div style="position: absolute; top: -10px; left: 20px; width: 20px; height: 20px; background: white; transform: rotate(45deg);"></div>
+                  <p style="font-style: italic; margin: 0; color: var(--secondary-color); font-size: 0.9rem; line-height: 1.6;">
+                    "Every student has a unique artistic fingerprint waiting to be discovered."
+                  </p>
+                  <div style="display: flex; align-items: center; margin-top: 15px;">
+                    <div style="width: 30px; height: 2px; background: var(--primary-color); margin-right: 10px;"></div>
+                    <span style="font-size: 0.8rem; color: var(--primary-color); font-weight: 600;">M. Pavan Sagar</span>
+                  </div>
+                </div>
+              </div>
+              <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100%; background: url('https://www.transparenttextures.com/patterns/brushed-alum.png') repeat; opacity: 0.1; z-index: 1;"></div>
+            </div>
+          </div>
+          
+          <div style="margin-top: 50px; position: relative;">
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; margin-bottom: 50px;">
+              <div style="flex: 1; min-width: 300px; position: relative; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 5px 25px rgba(0,0,0,0.05); transition: var(--transition); border-top: 3px solid var(--primary-color);">
+                <div style="width: 60px; height: 60px; background: rgba(64, 224, 208, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                  <i class="fas fa-bullseye" style="font-size: 1.5rem; color: var(--primary-color);"></i>
+                </div>
+                <h3 style="font-size: 1.5rem; color: var(--secondary-color); margin-bottom: 15px; position: relative; padding-bottom: 10px;">
+                  Our Mission
+                  <span style="position: absolute; bottom: 0; left: 0; width: 40px; height: 2px; background: var(--primary-color);"></span>
+                </h3>
+                <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-color); margin: 0;">
+                  At Artbeat, we believe that artistic expression is not just a skill but a way of life. Our mission is to nurture creativity, inspire self-expression, and provide transformative learning experiences through our specialized <strong style="color: var(--primary-color);">Drawing, Painting, and Music programs</strong> for students of all ages and skill levels.
+                </p>
+              </div>
+              
+              <div style="flex: 1; min-width: 300px; position: relative; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 5px 25px rgba(0,0,0,0.05); transition: var(--transition); border-top: 3px solid var(--accent-color);">
+                <div style="width: 60px; height: 60px; background: rgba(255, 107, 107, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                  <i class="fas fa-chalkboard-teacher" style="font-size: 1.5rem; color: var(--accent-color);"></i>
+                </div>
+                <h3 style="font-size: 1.5rem; color: var(--secondary-color); margin-bottom: 15px; position: relative; padding-bottom: 10px;">
+                  Our Approach
+                  <span style="position: absolute; bottom: 0; left: 0; width: 40px; height: 2px; background: var(--accent-color);"></span>
+                </h3>
+                <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-color); margin-bottom: 20px;">
+                  We've developed a unique teaching methodology that blends time-tested techniques with contemporary approaches. Our curriculum is carefully structured to progress from fundamental skills to advanced concepts.
+                </p>
+                <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-color); margin: 0;">
+                  What sets us apart is our commitment to personalized attention, with small class sizes and individualized feedback that helps each student progress at their own pace while being part of a supportive creative community.
+                </p>
+              </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, var(--primary-color), #00b4d8); padding: 40px; border-radius: 10px; color: white; position: relative; overflow: hidden; margin-top: 50px;">
+              <div style="position: absolute; top: 0; right: 0; width: 200px; height: 100%; background: url('https://www.transparenttextures.com/patterns/brushed-alum.png') repeat; opacity: 0.1;"></div>
+              <div style="position: relative; z-index: 2; max-width: 800px; margin: 0 auto; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 20px; line-height: 1.3;">
+                  <i class="fas fa-quote-left" style="opacity: 0.5; margin-right: 15px; font-size: 2rem;"></i>
+                  <span style="font-style: italic;">Creativity is intelligence having fun</span>
+                  <i class="fas fa-quote-right" style="opacity: 0.5; margin-left: 15px; font-size: 2rem;"></i>
+                </div>
+                <div style="font-size: 1.1rem; opacity: 0.9; font-weight: 500;">
+                  - Albert Einstein
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1577896851231-70efdc5abf2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Artbeat Institute Classroom">
+        </div>
+      </div>
+
+      <div class="values-section" style="padding: 100px 0; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+        <div class="container">
+          <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+            <h2 style="font-size: 2.8rem; color: var(--secondary-color); position: relative; display: inline-block; margin-bottom: 20px;">
+              Our <span style="color: var(--primary-color);">Core Values</span>
+              <span style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--primary-color); border-radius: 2px;"></span>
+            </h2>
+            <p style="font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto; line-height: 1.8;">
+              The foundation of everything we do at Artbeat Institute, shaping exceptional learning experiences
+            </p>
+          </div>
+          
+          <div class="values-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px;">
+            <div class="value-card" style="background: white; border-radius: 15px; padding: 40px 30px; text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.05); border-top: 4px solid var(--primary-color);">
+              <div class="value-icon" style="width: 90px; height: 90px; background: linear-gradient(135deg, rgba(64, 224, 208, 0.1) 0%, rgba(64, 224, 208, 0.2) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 2.5rem; color: var(--primary-color); transition: all 0.3s ease; transform: translateY(0);">
+                <i class="fas fa-palette"></i>
+              </div>
+              <h3 style="font-size: 1.5rem; color: var(--secondary-color); margin-bottom: 15px; position: relative; padding-bottom: 15px;">
+                Creativity First
+                <span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 3px; background: var(--primary-color); border-radius: 2px;"></span>
+              </h3>
+              <p style="color: #666; line-height: 1.8; margin: 0; font-size: 1.05rem;">
+                We foster an environment where imagination flourishes and artistic boundaries are constantly pushed. Our students are encouraged to think outside the box and develop their unique artistic voice.
+              </p>
+              <div class="value-hover" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary-color), #00b4d8); opacity: 0; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; transform: scale(0.8);">
+                <div style="padding: 20px; color: white; text-align: center; transform: translateY(20px); transition: all 0.4s ease; opacity: 0;">
+                  <i class="fas fa-arrow-right" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                  <span style="font-weight: 600; font-size: 1.1rem;">Learn more about our approach</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="value-card" style="background: white; border-radius: 15px; padding: 40px 30px; text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.05); border-top: 4px solid #ff6b6b;">
+              <div class="value-icon" style="width: 90px; height: 90px; background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 107, 107, 0.2) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 2.5rem; color: #ff6b6b; transition: all 0.3s ease; transform: translateY(0);">
+                <i class="fas fa-users"></i>
+              </div>
+              <h3 style="font-size: 1.5rem; color: var(--secondary-color); margin-bottom: 15px; position: relative; padding-bottom: 15px;">
+                Inclusive Community
+                <span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 3px; background: #ff6b6b; border-radius: 2px;"></span>
+              </h3>
+              <p style="color: #666; line-height: 1.8; margin: 0; font-size: 1.05rem;">
+                Building a welcoming space where artists of all backgrounds and skill levels can learn and grow together. We celebrate diversity and believe in the power of artistic expression to connect people.
+              </p>
+              <div class="value-hover" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #ff6b6b, #ff8e8e); opacity: 0; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; transform: scale(0.8);">
+                <div style="padding: 20px; color: white; text-align: center; transform: translateY(20px); transition: all 0.4s ease; opacity: 0;">
+                  <i class="fas fa-arrow-right" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                  <span style="font-weight: 600; font-size: 1.1rem;">Join our creative community</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="value-card" style="background: white; border-radius: 15px; padding: 40px 30px; text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.05); border-top: 4px solid #6c5ce7;">
+              <div class="value-icon" style="width: 90px; height: 90px; background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(108, 92, 231, 0.2) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 2.5rem; color: #6c5ce7; transition: all 0.3s ease; transform: translateY(0);">
+                <i class="fas fa-medal"></i>
+              </div>
+              <h3 style="font-size: 1.5rem; color: var(--secondary-color); margin-bottom: 15px; position: relative; padding-bottom: 15px;">
+                Pursuit of Excellence
+                <span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 3px; background: #6c5ce7; border-radius: 2px;"></span>
+              </h3>
+              <p style="color: #666; line-height: 1.8; margin: 0; font-size: 1.05rem;">
+                Committed to maintaining the highest standards in art and music education through continuous improvement, expert instruction, and a curriculum that challenges and inspires.
+              </p>
+              <div class="value-hover" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #6c5ce7, #a29bfe); opacity: 0; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; transform: scale(0.8);">
+                <div style="padding: 20px; color: white; text-align: center; transform: translateY(20px); transition: all 0.4s ease; opacity: 0;">
+                  <i class="fas fa-arrow-right" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                  <span style="font-weight: 600; font-size: 1.1rem;">See our success stories</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="value-card" style="background: white; border-radius: 15px; padding: 40px 30px; text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.05); border-top: 4px solid #00b894;">
+              <div class="value-icon" style="width: 90px; height: 90px; background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(0, 184, 148, 0.2) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 2.5rem; color: #00b894; transition: all 0.3s ease; transform: translateY(0);">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <h3 style="font-size: 1.5rem; color: var(--secondary-color); margin-bottom: 15px; position: relative; padding-bottom: 15px;">
+                Innovative Learning
+                <span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 3px; background: #00b894; border-radius: 2px;"></span>
+              </h3>
+              <p style="color: #666; line-height: 1.8; margin: 0; font-size: 1.05rem;">
+                Embracing new techniques, technologies, and teaching methodologies to enhance the learning experience and prepare students for the evolving world of art and music.
+              </p>
+              <div class="value-hover" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #00b894, #55efc4); opacity: 0; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; transform: scale(0.8);">
+                <div style="padding: 20px; color: white; text-align: center; transform: translateY(20px); transition: all 0.4s ease; opacity: 0;">
+                  <i class="fas fa-arrow-right" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                  <span style="font-weight: 600; font-size: 1.1rem;">Explore our innovative methods</span>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+      <style>
+        .value-card {
+          position: relative;
+          overflow: hidden;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .value-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+        }
+        
+        .value-card:hover .value-icon {
+          transform: translateY(-10px) scale(1.1);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .value-card:hover .value-hover {
+          opacity: 1;
+          transform: scale(1);
+        }
+        
+        .value-card:hover .value-hover div {
+          transform: translateY(0);
+          opacity: 1;
+          transition-delay: 0.2s;
+        }
+        
+        .value-card:hover p,
+        .value-card:hover h3 {
+          color: transparent;
+          -webkit-text-fill-color: transparent;
+        }
+        
+        .value-card:hover .value-icon {
+          opacity: 0;
+        }
+        
+        .value-card h3 span {
+          transition: all 0.3s ease;
+        }
+        
+        .value-card:hover h3 span {
+          opacity: 0;
+        }
+        
+        @media (max-width: 768px) {
+          .value-hover {
+            display: none !important;
+          }
+          
+          .value-card:hover p,
+          .value-card:hover h3 {
+            color: inherit;
+            -webkit-text-fill-color: initial;
+          }
+          
+          .value-card:hover .value-icon {
+            opacity: 1;
+          }
+        }
+      </style>
+      
+      <script>
+        // Add hover effect for value cards
+        document.addEventListener('DOMContentLoaded', function() {
+          const cards = document.querySelectorAll('.value-card');
+          
+          cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+              this.style.transform = 'translateY(-10px)';
+              this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+              this.style.transform = 'translateY(0)';
+              this.style.boxShadow = '0 15px 35px rgba(0,0,0,0.05)';
+            });
+          });
+        });
+      </script>
+        </div>
+      </div>
+
+      <div class="team-section" style="padding: 100px 0; background: white;">
+        <div class="container">
+          <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+            <h2 style="font-size: 2.8rem; color: var(--secondary-color); position: relative; display: inline-block; margin-bottom: 20px;">
+              Our <span style="color: var(--primary-color);">Founder</span>
+              <span style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--primary-color); border-radius: 2px;"></span>
+            </h2>
+            <p style="font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto; line-height: 1.8;">
+              The visionary behind Artbeat Institute's success
+            </p>
+          </div>
+          
+          <div class="founder-profile" style="max-width: 1000px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.08);">
+            <div style="display: flex; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 300px; min-height: 500px; background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80') center/cover;">
+              </div>
+              <div style="flex: 1.2; min-width: 300px; padding: 50px; display: flex; flex-direction: column; justify-content: center;">
+                <h3 style="font-size: 2rem; color: var(--secondary-color); margin-bottom: 10px;">M. Pavan Sagar</h3>
+                <p class="role" style="color: var(--primary-color); font-size: 1.2rem; font-weight: 600; margin-bottom: 20px;">Founder & Lead Instructor</p>
+                
+                <div style="margin-bottom: 25px;">
+                  <p style="color: #666; line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem;">
+                    With over 15 years of professional experience in fine arts and music education, Pavan Sagar brings a wealth of knowledge and passion to Artbeat Institute. A graduate from the prestigious Jawaharlal Nehru Architecture and Fine Arts University, Pavan has exhibited his work in numerous galleries across India and has been recognized with several awards for his contributions to art education.
+                  </p>
+                  <p style="color: #666; line-height: 1.8; font-size: 1.05rem;">
+                    His teaching philosophy centers around nurturing each student's unique creative voice while providing them with strong technical foundations.
+                  </p>
+                </div>
+                
+                <div style="background: #f9f9f9; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid var(--primary-color);">
+                  <p style="font-style: italic; color: #555; margin: 0; font-size: 1.1rem; line-height: 1.7;">
+                    "Every student has a unique artistic fingerprint waiting to be discovered. Our role is to provide the guidance, tools, and inspiration to help them uncover it."
+                  </p>
+                </div>
+                
+                <div class="social-links" style="display: flex; gap: 15px; margin-top: 20px;">
+                  <a href="#" aria-label="Email" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
+                    <i class="fas fa-envelope"></i>
+                  </a>
+                  <a href="#" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="#" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="#" aria-label="LinkedIn" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Start Your Creative Journey?</h2>
+      <p>Join our community of artists and musicians today.</p>
+      <div class="cta-buttons">
+        <a href="courses.html" class="btn btn-primary">View Courses</a>
+        <a href="contact.html" class="btn btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <h3>Artbeat Institute</h3>
+          <p>Nurturing creativity and artistic expression through quality education in visual and performing arts.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Info</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 3rd floor, Bhaskara Heights,<br>Kranthi Nagar, Hyderabad</p>
+          <p><i class="fas fa-phone"></i> +91 91601 27700</p>
+          <p><i class="fas fa-envelope"></i> contact@artbeatinstitute.com</p>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Subscribe to get updates on courses, workshops, and events.</p>
+          <form class="newsletter-form">
+            <div class="newsletter-input-group">
+              <input type="email" placeholder="Your email address" required>
+              <button type="submit" class="newsletter-btn">
+                <i class="fas fa-paper-plane"></i> Subscribe
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Artbeat Institute of Drawing, Painting and Music. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

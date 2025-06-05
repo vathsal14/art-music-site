@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses - Artbeat Institute</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Additional styles specific to courses page */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .page-hero {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url('../images/courses-hero.jpg') center/cover;
+      color: white;
+      text-align: center;
+      padding: 120px 20px;
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(64, 224, 208, 0.1), rgba(32, 178, 170, 0.1));
+      z-index: 0;
+    }
+
+    .page-hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      animation: fadeInDown 1s ease;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .page-hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .course-section {
+      padding: 80px 0;
+      background: #f9f9f9;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 0 20px;
+    }
+    
+    .section-header h2 {
+      font-size: 2.8rem;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-header h2:after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: #40E0D0;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .section-header p {
+      color: #6c757d;
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 25px auto 0;
+      line-height: 1.7;
+    }
+
+    .courses-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+      padding: 0 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .course-category {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border: 1px solid #e9ecef;
+    }
+    
+    .course-category:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .course-header {
+      background: linear-gradient(135deg, #40E0D0, #36D1DC);
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .course-header h3 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .offline-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.25);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-top: 10px;
+      font-weight: 500;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    .course-body {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    
+    .course-body p:first-child {
+      color: #555;
+      line-height: 1.7;
+      margin: 0 0 25px 0;
+      font-size: 1.05rem;
+      min-height: auto;
+    }
+
+    .course-category ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 20px 0;
+    }
+
+    .course-category ul li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 12px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .course-category ul li:before {
+      content: '✓';
+      color: #40E0D0;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    
+    .course-meta {
+      background: #f8fafb;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 0 0 25px 0;
+      border-left: 4px solid #40E0D0;
+      flex-grow: 1;
+    }
+
+    /* Newsletter Form */
+    .newsletter-form {
+      margin-top: 20px;
+    }
+    
+    .newsletter-input-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .newsletter-form input[type="email"]:focus {
+      border-color: #40E0D0;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.2);
+    }
+    
+    .newsletter-btn {
+      background: #40E0D0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .newsletter-btn:hover {
+      background: #35c9bb;
+      transform: translateY(-2px);
+    }
+
+    .course-meta p {
+      margin: 0 0 12px 0;
+      color: #555;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .course-meta p:last-child {
+      margin-bottom: 0;
+    }
+
+    .course-meta p i {
+      margin-right: 12px;
+      color: #40E0D0;
+      margin-top: 4px;
+      min-width: 16px;
+      text-align: center;
+    }
+
+    .course-meta strong {
+      color: #2c3e50;
+      margin-right: 5px;
+      font-weight: 600;
+    }
+
+    .btn-enroll {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #40E0D0;
+      color: white;
+      padding: 14px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: auto;
+      transition: all 0.3s ease;
+      border: 2px solid #40E0D0;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(64, 224, 208, 0.3);
+    }
+    
+    .btn-enroll i {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+    
+    .btn-enroll:hover {
+      background: #36D1DC;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(64, 224, 208, 0.4);
+    }
+    
+    .btn-enroll:hover i {
+      transform: translateX(4px);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+      .courses-container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        max-width: 1000px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .section-header h2 {
+        font-size: 2.2rem;
+      }
+      
+      .section-header p {
+        font-size: 1.1rem;
+      }
+      
+      .courses-container {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .course-category {
+        max-width: 100%;
+      }
+      
+      .course-body {
+        padding: 25px 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .section-header h2 {
+        font-size: 1.8rem;
+      }
+      
+      .section-header p {
+        font-size: 1rem;
+      }
+      
+      .course-header {
+        padding: 20px 15px;
+      }
+      
+      .course-header h3 {
+        font-size: 1.4rem;
+      }
+      
+      .course-meta {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Artbeat</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="active"><a href="courses.html">Courses</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Our Courses</h1>
+      <p>Unlock your creative potential with our comprehensive art and design programs</p>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="course-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Art Programs</h2>
+        <p>Discover our comprehensive range of art courses designed to nurture creativity and artistic skills at every level</p>
+      </div>
+
+      <div class="courses-container">
+        <!-- Kids Drawing Course -->
+        <div class="course-category">
+          <div class="course-header">
+            <h3>KIDS DRAWING</h3>
+            <span class="offline-tag">Age 5-12 years</span>
+          </div>
+          <div class="course-body">
+            <p>Junior Certification Course in Freehand Sketching and Drawing with Pencil / Oil Pastels / Color Pencils.</p>
+            <div class="course-meta">
+              <p><i class="fas fa-pencil-alt"></i> <strong>Focus:</strong> Basic Lines, Shapes, Numbers & Alphabets</p>
+              <p><i class="far fa-calendar-alt"></i> <strong>Duration:</strong> Weekly 5 Classes (Mon-Fri)</p>
+              <p><i class="far fa-clock"></i> <strong>Class Duration:</strong> 1 hour</p>
+              <p><i class="fas fa-laptop"></i> <strong>Online Option:</strong> 3 classes/week (30 min each)</p>
+              <p><i class="fas fa-certificate"></i> Junior Certification upon completion</p>
+            </div>
+            <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Adults Drawing Course -->
+        <div class="course-category">
+          <div class="course-header">
+            <h3>ADULT DRAWING</h3>
+            <span class="offline-tag">Age 13+ years</span>
+          </div>
+          <div class="course-body">
+            <p>Senior Certification Course in Freehand Drawing with Pencil Shading using different Pencil Grades.</p>
+            <div class="course-meta">
+              <p><i class="fas fa-pencil-alt"></i> <strong>Focus:</strong> Shading Techniques, Light & Shadow, 2D to 3D</p>
+              <p><i class="far fa-calendar-alt"></i> <strong>Duration:</strong> Weekly 5 Classes (Mon-Fri)</p>
+              <p><i class="far fa-clock"></i> <strong>Class Duration:</strong> 1 hour</p>
+              <p><i class="fas fa-laptop"></i> <strong>Online Option:</strong> 3 classes/week (30 min each)</p>
+              <p><i class="fas fa-certificate"></i> Senior Certification upon completion</p>
+            </div>
+            <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Painting Course -->
+        <div class="course-category">
+          <div class="course-header">
+            <h3>PAINTING</h3>
+            <span class="offline-tag">Age 13+ years</span>
+          </div>
+          <div class="course-body">
+            <p>Comprehensive painting course covering various mediums including acrylic, oil, watercolor, and poster colors.</p>
+            <div class="course-meta">
+              <p><i class="fas fa-palette"></i> <strong>Mediums:</strong> Acrylic, Oil, Watercolor, Poster Colors</p>
+              <p><i class="far fa-calendar-alt"></i> <strong>Schedule:</strong> 3 Classes/Week (Mon-Sat)</p>
+              <p><i class="far fa-clock"></i> <strong>Class Duration:</strong> 2 hours</p>
+              <p><i class="fas fa-paint-brush"></i> <strong>Focus:</strong> Techniques & Styles</p>
+              <p><i class="fas fa-certificate"></i> Certificate upon completion</p>
+            </div>
+            <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Calligraphy Course -->
+        <div class="course-category">
+          <div class="course-header">
+            <h3>CALLIGRAPHY</h3>
+            <span class="offline-tag">Age 13+ years</span>
+          </div>
+          <div class="course-body">
+            <p>Master the art of beautiful writing with our comprehensive calligraphy program covering various styles and techniques.</p>
+            <div class="course-meta">
+              <p><i class="fas fa-pen-nib"></i> <strong>Styles:</strong> Brush Pen, Faux Calligraphy, Lettering</p>
+              <p><i class="far fa-calendar-alt"></i> <strong>Schedule:</strong> 3 Classes/Week (Mon-Sat)</p>
+              <p><i class="far fa-clock"></i> <strong>Class Duration:</strong> 1 hour</p>
+              <p><i class="fas fa-paint-brush"></i> <strong>Projects:</strong> Font Designing, Greeting Cards</p>
+              <p><i class="fas fa-certificate"></i> Certificate upon completion</p>
+            </div>
+            <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Handwriting Course -->
+        <div class="course-category">
+          <div class="course-header">
+            <h3>HANDWRITING</h3>
+            <span class="offline-tag">Age 10+ years</span>
+          </div>
+          <div class="course-body">
+            <p>Transform your handwriting with our structured program focusing on letter formation, spacing, and writing techniques.</p>
+            <div class="course-meta">
+              <p><i class="fas fa-pen"></i> <strong>Focus:</strong> Letter Formation, Spacing, Consistency</p>
+              <p><i class="far fa-calendar-alt"></i> <strong>Duration:</strong> Weekly 5 Classes (Mon-Fri)</p>
+              <p><i class="far fa-clock"></i> <strong>Class Duration:</strong> 1 hour</p>
+              <p><i class="fas fa-chart-line"></i> <strong>Improvement Areas:</strong> Speed & Legibility</p>
+              <p><i class="fas fa-certificate"></i> Completion Certificate</p>
+            </div>
+            <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <h3>Artbeat Institute</h3>
+          <p>Nurturing creativity and artistic expression through quality education in visual and performing arts.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Info</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 3rd floor, Bhaskara Heights,<br>Kranthi Nagar, Hyderabad</p>
+          <p><i class="fas fa-phone"></i> +91 91601 27700</p>
+          <p><i class="fas fa-envelope"></i> contact@artbeatinstitute.com</p>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Subscribe to get updates on courses, workshops, and events.</p>
+          <form class="newsletter-form">
+            <div class="newsletter-input-group">
+              <input type="email" placeholder="Your email address" required>
+              <button type="submit" class="newsletter-btn">
+                <i class="fas fa-paper-plane"></i> Subscribe
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Artbeat Institute of Drawing, Painting and Music. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Main JavaScript -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Tab functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const courseCards = document.querySelectorAll('.course-card');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active class from all buttons
+          tabBtns.forEach(b => b.classList.remove('active'));
+          // Add active class to clicked button
+          btn.classList.add('active');
+          
+          const category = btn.getAttribute('data-category');
+          
+          // Show/hide course cards based on category
+          courseCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+          
+          // Show/hide category headers
+          document.querySelectorAll('.course-category').forEach(section => {
+            if (category === 'all') {
+              section.style.display = 'block';
+            } else if (section.id === `${category}-courses`) {
+              section.style.display = 'block';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
