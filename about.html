@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us | Artbeat Institute</title>
+  <link rel="preload" href="assets/images/logo.jpg" as="image">
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -274,7 +275,10 @@
   <!-- Header / Navbar -->
   <header class="navbar">
     <div class="container">
-      <a href="index.html" class="logo">Artbeat</a>
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.jpg" alt="Artbeat Logo" class="logo-img">
+        <span>Artbeat</span>
+      </a>
       <button class="menu-btn" aria-label="Toggle menu">
         <i class="fas fa-bars"></i>
       </button>
@@ -327,7 +331,7 @@
             <div style="display: flex; align-items: center; margin: 40px 0; background: linear-gradient(135deg, rgba(64, 224, 208, 0.1), rgba(255, 107, 107, 0.1)); padding: 30px; border-radius: 10px; position: relative; overflow: hidden;">
               <div style="flex: 1; padding-right: 30px;">
                 <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-color); margin-bottom: 20px; position: relative; z-index: 2;">
-                  Our founder, <strong style="color: var(--secondary-color);">Mr. M. Pavan Sagar</strong>, envisioned a space where creativity knows no bounds and where every individual can discover and develop their artistic voice.
+                  Our founder, <strong style="color: var(--secondary-color);">D. S. Madhusudan Rao</strong>, envisioned a space where creativity knows no bounds and where every individual can discover and develop their artistic voice.
                 </p>
                 <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-color); position: relative; z-index: 2; margin: 0;">
                   Today, Artbeat stands as a testament to that vision, offering comprehensive programs in visual and performing arts.
@@ -341,7 +345,7 @@
                   </p>
                   <div style="display: flex; align-items: center; margin-top: 15px;">
                     <div style="width: 30px; height: 2px; background: var(--primary-color); margin-right: 10px;"></div>
-                    <span style="font-size: 0.8rem; color: var(--primary-color); font-weight: 600;">M. Pavan Sagar</span>
+                    <span style="font-size: 0.8rem; color: var(--primary-color); font-weight: 600;">D. S. Madhusudan Rao</span>
                   </div>
                 </div>
               </div>
@@ -396,8 +400,12 @@
             </div>
           </div>
         </div>
-        <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1577896851231-70efdc5abf2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Artbeat Institute Classroom">
+        <div class="about-image" style="position: relative; width: 90%; max-width: 800px; margin: 0 auto; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+          <img src="assets/images/1.webp" alt="Artbeat Institute Classroom" style="width: 100%; height: auto; display: block; transition: transform 0.5s ease; object-fit: cover; max-height: 400px;">
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); color: white; text-align: center;">
+            <h3 style="margin: 0; font-size: 1.3rem; text-shadow: 0 2px 4px rgba(0,0,0,0.4);">Our Creative Space</h3>
+            <p style="margin: 8px 0 0; opacity: 0.9; font-size: 0.9rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">Where imagination meets expression</p>
+          </div>
         </div>
       </div>
 
@@ -589,18 +597,20 @@
           
           <div class="founder-profile" style="max-width: 1000px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.08);">
             <div style="display: flex; flex-wrap: wrap;">
-              <div style="flex: 1; min-width: 300px; min-height: 500px; background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80') center/cover;">
+              <div style="flex: 1; min-width: 300px; min-height: 500px; background: url('assets/images/hero.jpg') 40% 20%/cover no-repeat; position: relative; overflow: hidden;">
               </div>
               <div style="flex: 1.2; min-width: 300px; padding: 50px; display: flex; flex-direction: column; justify-content: center;">
-                <h3 style="font-size: 2rem; color: var(--secondary-color); margin-bottom: 10px;">M. Pavan Sagar</h3>
+                <h3 style="font-size: 2rem; color: var(--secondary-color); margin-bottom: 10px;">D. S. Madhusudan Rao</h3>
                 <p class="role" style="color: var(--primary-color); font-size: 1.2rem; font-weight: 600; margin-bottom: 20px;">Founder & Lead Instructor</p>
                 
                 <div style="margin-bottom: 25px;">
-                  <p style="color: #666; line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem;">
-                    With over 15 years of professional experience in fine arts and music education, Pavan Sagar brings a wealth of knowledge and passion to Artbeat Institute. A graduate from the prestigious Jawaharlal Nehru Architecture and Fine Arts University, Pavan has exhibited his work in numerous galleries across India and has been recognized with several awards for his contributions to art education.
-                  </p>
+                  <ul style="color: #666; line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; padding-left: 20px;">
+                    <li><strong>Sangeet Visharad</strong> (Certified by Akhil Bharatiya Gandharva Mahavidyalaya)</li>
+                    <li><strong>15+ Years</strong> of teaching Hindustani classical piano/keyboard/Vocals</li>
+                    <li><strong>Specialization</strong> – Raag-based improvisation & exam training</li>
+                  </ul>
                   <p style="color: #666; line-height: 1.8; font-size: 1.05rem;">
-                    His teaching philosophy centers around nurturing each student's unique creative voice while providing them with strong technical foundations.
+                    Trained under renowned Artists and his Father D. Sathya Hari, Sitar Maestro. Learnt Drawing and Painting under renowned Artists from Hyderabad. Diploma in Graphic Designing from Arena Multimedia. Specialist in Portraits, Figure Drawing, Landscape and Clay Paintings.
                   </p>
                 </div>
                 
@@ -611,16 +621,16 @@
                 </div>
                 
                 <div class="social-links" style="display: flex; gap: 15px; margin-top: 20px;">
-                  <a href="#" aria-label="Email" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
+                  <a href="mailto:dsmadhu8888@gmail.com" aria-label="Email" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
                     <i class="fas fa-envelope"></i>
                   </a>
-                  <a href="#" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
+                  <a href="https://www.facebook.com/share/v/18i3nhzxcF/" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
                     <i class="fab fa-facebook-f"></i>
                   </a>
-                  <a href="#" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
+                  <a href="https://www.instagram.com/artbeat_artstudio?igsh=bjB3bTR2dmZkbDB3" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
                     <i class="fab fa-instagram"></i>
                   </a>
-                  <a href="#" aria-label="LinkedIn" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
+                  <a href="https://www.linkedin.com/in/madhusudhan-rao-6694a436a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" aria-label="LinkedIn" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f0f9f8; color: var(--primary-color); border-radius: 50%; transition: all 0.3s ease;">
                     <i class="fab fa-linkedin-in"></i>
                   </a>
                 </div>
@@ -652,10 +662,10 @@
           <h3>Artbeat Institute</h3>
           <p>Nurturing creativity and artistic expression through quality education in visual and performing arts.</p>
           <div class="social-links">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/share/v/18i3nhzxcF/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/artbeat_artstudio?igsh=bjB3bTR2dmZkbDB3" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.threads.net/@artbeat_artstudio" aria-label="Threads"><img src="https://cdn.simpleicons.org/threads/ffffff" alt="Threads" style="width: 20px; height: 20px;" /></a>
+            <a href="https://youtube.com/@artbeatartinstitute?si=JaBoRLiemhSOaOiI" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
         <div class="footer-links">
@@ -672,7 +682,7 @@
           <h3>Contact Info</h3>
           <p><i class="fas fa-map-marker-alt"></i> 3rd floor, Bhaskara Heights,<br>Kranthi Nagar, Hyderabad</p>
           <p><i class="fas fa-phone"></i> +91 91601 27700</p>
-          <p><i class="fas fa-envelope"></i> contact@artbeatinstitute.com</p>
+          <p><i class="fas fa-envelope"></i> dsmadhu8888@gmail.com</p>
         </div>
         <div class="footer-newsletter">
           <h4>Newsletter</h4>

@@ -7,6 +7,48 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* Logo styles */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    
+    .logo-img {
+      height: 40px;
+      width: auto;
+      border-radius: 4px;
+    }
+    
+    .logo span {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #40E0D0, #20B2AA);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+      position: relative;
+      padding: 0.5rem 0;
+      color: transparent; /* Fallback for browsers that don't support background-clip */
+    }
+    
+    .logo span::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #40E0D0, #20B2AA);
+      transition: width 0.3s ease;
+    }
+    
+    .logo:hover span::after {
+      width: 100%;
+    }
+    
     .page-hero {
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/courses-hero.jpg') center/cover;
       color: white;
@@ -165,18 +207,27 @@
   </style>
 </head>
 <body>
-  <nav class="navbar">
+  <!-- Header / Navbar -->
+  <header class="navbar">
     <div class="container">
-      <a href="index.html" class="logo">Artbeat</a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="courses.html" class="active">Courses</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.jpg" alt="Artbeat Logo" class="logo-img">
+        <span>Artbeat</span>
+      </a>
+      <button class="menu-btn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html" class="active">Courses</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-  </nav>
+  </header>
 
   <section class="page-hero">
     <div class="container">
@@ -193,7 +244,7 @@
       </div>
       <div class="courses-container">
         <div class="course-card expandable-card" id="drawing-course-card">
-  <img src="assets/images/paintings/drawing-course.jpg" alt="Drawing Course" />
+  <img src="assets/images/paintings/25.webp" alt="Drawing Course" />
   <div class="course-content">
     <h3>Drawing Course <span class="age-badge">Ages 5+</span></h3>
     <p class="course-summary">Fun step-by-step drawing for all ages!</p>
@@ -204,9 +255,9 @@
 </div>
 
 <div class="course-card expandable-card" id="painting-course-card">
-  <img src="assets/images/paintings/painting-course.jpg" alt="Painting Course" />
+  <img src="assets/images/courses/painting.jpg" alt="Painting Course" />
   <div class="course-content">
-    <h3>Painting Course <span class="age-badge">Teens & Adults 13+</span></h3>
+    <h3>Painting Course<br><span class="age-badge">Teens & Adults 13+</span></h3>
     <p class="course-summary">Master painting techniques & discover your artistic voice!</p>
     <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
     <button class="expand-btn" id="open-painting-modal">View Details <i class="fas fa-chevron-right"></i></button>
@@ -214,9 +265,9 @@
 </div>
 
 <div class="course-card expandable-card" id="calligraphy-course-card">
-  <img src="assets/images/paintings/calligraphy-course.jpg" alt="Calligraphy Course" />
+  <img src="assets/images/courses/calligraphy.jpg" alt="Calligraphy Course" />
   <div class="course-content">
-    <h3>Calligraphy Course <span class="age-badge">Ages 10+</span></h3>
+    <h3>Calligraphy Course<br><span class="age-badge">Ages 10+</span></h3>
     <p class="course-summary">Unlock the art of beautiful writing!</p>
     <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
     <button class="expand-btn" id="open-calligraphy-modal">View Details <i class="fas fa-chevron-right"></i></button>
@@ -224,9 +275,9 @@
 </div>
 
 <div class="course-card expandable-card" id="handwriting-course-card">
-  <img src="assets/images/paintings/handwriting-course.jpg" alt="Handwriting Improvement & Artful Writing" />
+  <img src="assets/images/courses/handwriting.webp" alt="Handwriting Improvement & Artful Writing" />
   <div class="course-content">
-    <h3>Handwriting Improvement <span class="age-badge">Ages 10+</span></h3>
+    <h3>Handwriting Improvement <br><span class="age-badge">Ages 10+</span></h3>
     <p class="course-summary">Transform your writing into beautiful, legible, expressive art!</p>
     <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
     <button class="expand-btn" id="open-handwriting-modal">View Details <i class="fas fa-chevron-right"></i></button>
@@ -234,37 +285,18 @@
 </div>
 
 <div class="course-card expandable-card" id="art-therapy-card">
-  <img src="assets/images/paintings/art-therapy.jpg" alt="Art Therapy: Healing Through Creativity" />
+  <img src="assets/images/courses/arttheraphy.jpg" alt="Art Therapy: Healing Through Creativity" />
   <div class="course-content">
-    <h3>Art Therapy <span class="age-badge">All Ages</span></h3>
+    <h3>Art Therapy <br><span class="age-badge">All Ages</span></h3>
     <p class="course-summary">Healing through creativity—no art experience needed!</p>
+    
     <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
     <button class="expand-btn" id="open-art-therapy-modal">View Details <i class="fas fa-chevron-right"></i></button>
   </div>
 </div>
 
-<div class="course-card expandable-card" id="mandala-therapy-card">
-  <img src="assets/images/paintings/mandala-therapy.jpg" alt="Mandala Therapy" />
-  <div class="course-content">
-    <h3>Mandala Therapy <span class="age-badge">All Ages</span></h3>
-    <p class="course-summary">Calm your mind and restore balance with mandalas.</p>
-    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
-    <button class="expand-btn" id="open-mandala-therapy-modal">View Details <i class="fas fa-chevron-right"></i></button>
-  </div>
-</div>
-
-<div class="course-card expandable-card" id="guided-painting-card">
-  <img src="assets/images/paintings/guided-painting.jpg" alt="Guided Painting: Emotional Release" />
-  <div class="course-content">
-    <h3>Guided Painting <span class="age-badge">All Ages</span></h3>
-    <p class="course-summary">Emotional release and healing through guided art.</p>
-    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
-    <button class="expand-btn" id="open-guided-painting-modal">View Details <i class="fas fa-chevron-right"></i></button>
-  </div>
-</div>
-
 <div class="course-card expandable-card" id="piano-course-card">
-  <img src="assets/images/paintings/piano-course.jpg" alt="Piano / Keyboard Course" />
+  <img src="assets/images/courses/piano.jpg" alt="Piano / Keyboard Course" />
   <div class="course-content">
     <h3>Piano / Keyboard <span class="age-badge">Ages 5+ & Adults</span></h3>
     <p class="course-summary">Unlock musical creativity & confidence—Western style!</p>
@@ -274,7 +306,7 @@
 </div>
 
 <div class="course-card expandable-card" id="hindustani-piano-course-card">
-  <img src="assets/images/paintings/hindustani-piano-course.jpg" alt="Hindustani Classical Piano/Keyboard Course" />
+  <img src="assets/images/courses/hindustanipiano.png" alt="Hindustani Classical Piano/Keyboard Course" />
   <div class="course-content">
     <h3>Hindustani Classical Piano <span class="age-badge">Ages 5+ & Adults</span></h3>
     <p class="course-summary">Learn soulful Indian classical music—Gandharva Mahavidyalaya certified!</p>
@@ -284,7 +316,7 @@
 </div>
 
 <div class="course-card expandable-card" id="hindustani-vocal-course-card">
-  <img src="assets/images/paintings/hindustani-vocal-course.jpg" alt="Hindustani Classical Vocal Music Course" />
+  <img src="assets/images/courses/Hindustani Classical Vocal.jpg" alt="Hindustani Classical Vocal Music Course" />
   <div class="course-content">
     <h3>Hindustani Classical Vocal <span class="age-badge">Ages 6+ & Adults</span></h3>
     <p class="course-summary">Discover the divine art of Hindustani classical singing—Gandharva Mahavidyalaya certified!</p>
@@ -294,9 +326,9 @@
 </div>
 
 <div class="course-card expandable-card" id="tcc-course-card">
-  <img src="assets/images/paintings/tcc-course.jpg" alt="Technical Certificate Course (Lower Grade Drawing Exam)" />
+  <img src="assets/images/courses/tcc-exam.jpg" alt="Technical Certificate Course (Lower Grade Drawing Exam)" />
   <div class="course-content">
-    <h3>TCC - Lower Grade Drawing <span class="age-badge">Class 7+/No Age Limit</span></h3>
+    <h3>TCC - Lower Grade Drawing <br><span class="age-badge">Class 7+/No Age Limit</span></h3>
     <p class="course-summary">Govt. of Telangana certified technical drawing course for careers & exams.</p>
     <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
     <button class="expand-btn" id="open-tcc-modal">View Details <i class="fas fa-chevron-right"></i></button>
@@ -304,9 +336,9 @@
 </div>
 
 <div class="course-card expandable-card" id="guitar-course-card">
-  <img src="assets/images/paintings/guitar-course.jpg" alt="Guitar Course" />
+  <img src="assets/images/courses/guitar.jpg" alt="Guitar Course" />
   <div class="course-content">
-    <h3>Guitar Course <span class="age-badge">All Levels</span></h3>
+    <h3>Guitar Course <br><span class="age-badge">All Levels</span></h3>
     <p class="course-summary">Master the art of guitar with step-by-step lessons and expert guidance.</p>
     <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
     <button class="expand-btn" id="open-guitar-modal">View Details <i class="fas fa-chevron-right"></i></button>
@@ -656,7 +688,17 @@
   <div class="modal-card">
     <button class="modal-close" id="close-art-therapy-modal" aria-label="Close">&times;</button>
     <h3>Art Therapy <span class="age-badge">All Ages</span></h3>
-    <div class="modal-summary">Discover the power of artistic expression for healing and growth.</div>
+    <div class="modal-summary">Discover the power of artistic expression for healing and growth. Our Art Therapy program includes specialized approaches to help you find balance and express yourself.</div>
+    <div class="therapy-options">
+      <div class="therapy-option">
+        <h4>Mandala Therapy</h4>
+        <p>Calm your mind and restore balance through the meditative practice of creating mandalas. This therapeutic art form helps reduce stress and promote mindfulness.</p>
+      </div>
+      <div class="therapy-option">
+        <h4>Guided Painting</h4>
+        <p>Experience emotional release and self-discovery through structured painting sessions guided by our experienced art therapists.</p>
+      </div>
+    </div>
     <h4 class="modal-underline">What is Art Therapy?</h4>
     <div style="margin-bottom:10px;">Art therapy is a form of psychotherapy that uses creative processes to improve mental, emotional, and physical well-being. Guided by a trained therapist, individuals explore their thoughts and feelings through painting, drawing, sculpting, and other artistic mediums—no prior art experience needed.</div>
     <h4 class="modal-underline">How Art Therapy Works</h4>
@@ -799,6 +841,42 @@
 </div>
 
 <style>
+  .therapy-badge {
+    display: inline-block;
+    background: rgba(64, 224, 208, 0.1);
+    color: #2c3e50;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin: 5px 5px 0 0;
+    font-weight: 500;
+  }
+
+  .therapy-options {
+    margin: 20px 0;
+  }
+
+  .therapy-option {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 3px solid var(--primary-color);
+  }
+
+  .therapy-option h4 {
+    color: var(--secondary-color);
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  .therapy-option p {
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
   .expandable-card .expand-btn {
     margin: 18px 0 10px 0;
     background: #f0f8fa;
@@ -912,6 +990,9 @@
     background: #40E0D0;
     color: #fff;
   }
+  
+
+
   .modal-card .level-content {
     display: none;
     margin-bottom: 18px;
@@ -1219,7 +1300,7 @@
     }
   });
 </script>
-
+<!--
         <div class="course-card">
           <img src="assets/images/3.webp" alt="Music" />
           <div class="course-content">
@@ -1261,7 +1342,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
   </section>
 
   <!-- Footer -->
@@ -1272,10 +1353,12 @@
           <h3>Artbeat Institute</h3>
           <p>Nurturing creativity and artistic expression through quality education in visual and performing arts.</p>
           <div class="social-links">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/share/v/18i3nhzxcF/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/artbeat_artstudio?igsh=bjB3bTR2dmZkbDB3" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.threads.net/@artbeat_artstudio" aria-label="Threads">
+              <img src="https://cdn.simpleicons.org/threads/ffffff" alt="Threads" style="width: 20px; height: 20px;" />
+            </a>            
+            <a href="https://youtube.com/@artbeatartinstitute?si=JaBoRLiemhSOaOiI" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
         <div class="footer-links">
@@ -1292,7 +1375,7 @@
           <h3>Contact Info</h3>
           <p><i class="fas fa-map-marker-alt"></i> 3rd floor, Bhaskara Heights,<br>Kranthi Nagar, Hyderabad</p>
           <p><i class="fas fa-phone"></i> +91 91601 27700</p>
-          <p><i class="fas fa-envelope"></i> contact@artbeatinstitute.com</p>
+          <p><i class="fas fa-envelope"></i>  dsmadhu8888@gmail.com</p>
         </div>
         <div class="footer-newsletter">
           <h4>Newsletter</h4>
@@ -1770,28 +1853,6 @@
   </style>
 </head>
 <body>
-  <!-- Header / Navbar -->
-  <!-- Header / Navbar -->
-  <header class="navbar">
-    <div class="container">
-      <a href="index.html" class="logo">Artbeat</a>
-      <button class="menu-btn" aria-label="Toggle menu">
-        <i class="fas fa-bars"></i>
-      </button>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="courses.html" class="active">Courses</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-
-
   <script>
     // Gallery-style mobile menu toggle
     document.addEventListener('DOMContentLoaded', function() {

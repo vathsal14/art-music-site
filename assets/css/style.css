@@ -48,6 +48,26 @@ body {
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin: 0;
+  position: relative;
+  height: 100%;
+  will-change: transform; /* Optimize for animations */
+  transform: translateZ(0); /* Force hardware acceleration */
+  backface-visibility: hidden; /* Fix for flickering in WebKit */
+  -webkit-font-smoothing: antialiased; /* Improve text rendering */
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  border-radius: 4px;
+}
+
+.logo span {
   font-size: 1.8rem;
   font-weight: 800;
   background: linear-gradient(135deg, #40E0D0, #20B2AA);
@@ -55,13 +75,15 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
-  transition: all 0.3s ease;
   position: relative;
   padding: 0.5rem 0;
   color: transparent; /* Fallback for browsers that don't support background-clip */
+  display: inline-block; /* Prevent layout shifts */
+  transition: all 0.3s ease;
+  backface-visibility: hidden; /* Fix for flickering in WebKit */
 }
 
-.logo::after {
+.logo span::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -72,7 +94,7 @@ body {
   transition: width 0.3s ease;
 }
 
-.logo:hover::after {
+.logo:hover span::after {
   width: 100%;
 }
 

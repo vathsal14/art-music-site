@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - Artbeat Institute</title>
+  <link rel="preload" href="assets/images/logo.jpg" as="image">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -218,6 +219,19 @@
       color: white;
       transform: translateY(-3px);
     }
+
+    .social-links a img.threads-icon {
+  width: 20px;
+  height: 20px;
+  filter: invert(39%) sepia(100%) saturate(697%) hue-rotate(132deg) brightness(93%) contrast(86%);
+  transition: filter 0.3s ease;
+}
+
+/* Match hover to the others */
+.social-links a:hover img.threads-icon {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
 
     /* Hours */
     .hours-list {
@@ -434,18 +448,27 @@
   </style>
 </head>
 <body>
-  <nav class="navbar">
+  <!-- Header / Navbar -->
+  <header class="navbar">
     <div class="container">
-      <div class="logo">Artbeat</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="courses.html">Courses</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
-      </ul>
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.jpg" alt="Artbeat Logo" class="logo-img">
+        <span>Artbeat</span>
+      </a>
+      <button class="menu-btn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-  </nav>
+  </header>
 
   <!-- Page Hero -->
   <section class="page-hero">
@@ -538,8 +561,7 @@
             </div>
             <div class="contact-details">
               <h3>Email</h3>
-              <p><a href="mailto:contact@artbeatinstitute.com">contact@artbeatinstitute.com</a></p>
-              <p><a href="mailto:admissions@artbeatinstitute.com">admissions@artbeatinstitute.com</a></p>
+              <p><a href="mailto:dsmadhu8888@gmail.com">dsmadhu8888@gmail.com</a></p>
             </div>
           </div>
           
@@ -558,11 +580,13 @@
           </div>
           
           <div class="social-links">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+            <a href="https://www.facebook.com/share/v/18i3nhzxcF/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/artbeat_artstudio?igsh=bjB3bTR2dmZkbDB3" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.threads.net/@artbeat_artstudio" aria-label="Threads">
+              <img src="https://cdn.simpleicons.org/threads/000000" alt="Threads" class="threads-icon" />
+
+            </a>            
+            <a href="https://youtube.com/@artbeatartinstitute?si=JaBoRLiemhSOaOiI" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
       </div>
@@ -602,10 +626,12 @@
           <h3>Artbeat Institute</h3>
           <p>Nurturing creativity and artistic expression through quality education in visual and performing arts.</p>
           <div class="social-links">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/share/v/18i3nhzxcF/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/artbeat_artstudio?igsh=bjB3bTR2dmZkbDB3" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.threads.net/@artbeat_artstudio" aria-label="Threads">
+              <img src="https://cdn.simpleicons.org/threads/000000" alt="Threads" class="threads-icon" />
+            </a>            
+            <a href="https://youtube.com/@artbeatartinstitute?si=JaBoRLiemhSOaOiI" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
         <div class="footer-links">
@@ -622,7 +648,7 @@
           <h3>Contact Info</h3>
           <p><i class="fas fa-map-marker-alt"></i> 3rd floor, Bhaskara Heights,<br>Kranthi Nagar, Hyderabad</p>
           <p><i class="fas fa-phone"></i> +91 91601 27700</p>
-          <p><i class="fas fa-envelope"></i> contact@artbeatinstitute.com</p>
+          <p><i class="fas fa-envelope"></i> dsmadhu8888@gmail.com</p>
         </div>
         <div class="footer-newsletter">
           <h4>Newsletter</h4>
