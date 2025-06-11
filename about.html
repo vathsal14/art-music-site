@@ -35,6 +35,7 @@
       animation: fadeInDown 1s ease;
       background: linear-gradient(45deg, #fff, #e0f7fa);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       line-height: 1.2;
     }
@@ -687,14 +688,25 @@
         <div class="footer-newsletter">
           <h4>Newsletter</h4>
           <p>Subscribe to get updates on courses, workshops, and events.</p>
-          <form class="newsletter-form">
-            <div class="newsletter-input-group">
-              <input type="email" placeholder="Your email address" required>
-              <button type="submit" class="newsletter-btn">
-                <i class="fas fa-paper-plane"></i> Subscribe
-              </button>
+          <!-- Begin Mailchimp Signup Form -->
+          <form action="https://gmail.us6.list-manage.com/subscribe/post?u=5c0ec96948bd281012adb47cb&amp;id=4b2bff69a5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate newsletter-form" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+              <div class="mc-field-group newsletter-input-group">
+                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Your email address" required>
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                  <input type="text" name="b_5c0ec96948bd281012adb47cb_4b2bff69a5" tabindex="-1" value="">
+                </div>
+                <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="newsletter-btn">
+                  <i class="fas fa-paper-plane"></i> Subscribe
+                </button>
+              </div>
+              <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>
             </div>
           </form>
+          <!--End mc_embed_signup-->
         </div>
       </div>
       <div class="footer-bottom">
@@ -702,5 +714,121 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Newsletter form submission
+      const newsletterForm = document.getElementById('mc-embedded-subscribe-form');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get email value
+          const emailInput = document.getElementById('mce-EMAIL');
+          const email = emailInput.value.trim();
+          
+          // Email validation
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailPattern.test(email)) {
+            showAlert('Please enter a valid email address.', 'error');
+            return false;
+          }
+          
+          // Show loading state
+          const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+          const originalBtnText = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+          
+          // Submit form to Mailchimp
+          const formData = new FormData(newsletterForm);
+          
+          fetch(newsletterForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            },
+            mode: 'no-cors' // Important for Mailchimp's CORS policy
+          })
+          .then(response => {
+            // Since we're using no-cors, we can't access the response directly
+            // Show success message regardless (Mailchimp will handle the actual subscription)
+            showAlert('Thank you for subscribing! Please check your email to confirm your subscription.', 'success');
+            newsletterForm.reset();
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            showAlert('There was an error processing your subscription. Please try again later.', 'error');
+          })
+          .finally(() => {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+          });
+        });
+      }
+      
+      // Function to show alert messages
+      function showAlert(message, type) {
+        // Remove any existing alerts
+        const existingAlert = document.querySelector('.alert');
+        if (existingAlert) {
+          existingAlert.remove();
+        }
+        
+        // Create alert element
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type}`;
+        alert.textContent = message;
+        
+        // Style the alert
+        alert.style.position = 'fixed';
+        alert.style.top = '20px';
+        alert.style.right = '20px';
+        alert.style.padding = '15px 25px';
+        alert.style.borderRadius = '5px';
+        alert.style.color = 'white';
+        alert.style.fontWeight = '500';
+        alert.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+        alert.style.zIndex = '1000';
+        alert.style.animation = 'slideIn 0.3s ease-out';
+        
+        // Set background color based on alert type
+        if (type === 'success') {
+          alert.style.backgroundColor = '#4CAF50'; // Green
+        } else if (type === 'error') {
+          alert.style.backgroundColor = '#F44336'; // Red
+        } else {
+          alert.style.backgroundColor = '#2196F3'; // Blue
+        }
+        
+        // Add to document
+        document.body.appendChild(alert);
+        
+        // Remove alert after 5 seconds
+        setTimeout(() => {
+          alert.style.animation = 'fadeOut 0.3s ease-out';
+          setTimeout(() => {
+            alert.remove();
+          }, 300);
+        }, 5000);
+      }
+      
+      // Add animation keyframes
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideIn {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+          from { opacity: 1; transform: translateX(0); }
+          to { opacity: 0; transform: translateX(100%); }
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
 </body>
 </html>

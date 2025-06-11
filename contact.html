@@ -745,6 +745,58 @@
         });
       }
       
+      // Newsletter form submission
+      const newsletterForm = document.getElementById('mc-embedded-subscribe-form');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get email value
+          const emailInput = document.getElementById('mce-EMAIL');
+          const email = emailInput.value.trim();
+          
+          // Email validation
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailPattern.test(email)) {
+            showAlert('Please enter a valid email address.', 'error');
+            return false;
+          }
+          
+          // Show loading state
+          const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+          const originalBtnText = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+          
+          // Submit form to Mailchimp
+          const formData = new FormData(newsletterForm);
+          
+          fetch(newsletterForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            },
+            mode: 'no-cors' // Important for Mailchimp's CORS policy
+          })
+          .then(response => {
+            // Since we're using no-cors, we can't access the response directly
+            // Show success message regardless (Mailchimp will handle the actual subscription)
+            showAlert('Thank you for subscribing! Please check your email to confirm your subscription.', 'success');
+            newsletterForm.reset();
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            showAlert('There was an error processing your subscription. Please try again later.', 'error');
+          })
+          .finally(() => {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+          });
+        });
+      }
+      
       // Function to show alert messages
       function showAlert(message, type) {
         // Remove any existing alerts
