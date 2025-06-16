@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses - Artbeat Institute</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Logo styles */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    
+    .logo-img {
+      height: 40px;
+      width: auto;
+      border-radius: 4px;
+    }
+    
+    .logo span {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #40E0D0, #20B2AA);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+      position: relative;
+      padding: 0.5rem 0;
+      color: transparent; /* Fallback for browsers that don't support background-clip */
+    }
+    
+    .logo span::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #40E0D0, #20B2AA);
+      transition: width 0.3s ease;
+    }
+    
+    .logo:hover span::after {
+      width: 100%;
+    }
+    
+    .page-hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/courses-hero.jpg') center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      margin-bottom: 50px;
+    }
+    .page-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1s ease;
+    }
+    .page-hero p {
+      font-size: 1.5rem;
+      margin-bottom: 0;
+      animation: fadeInUp 1s ease;
+    }
+    .courses-section {
+      padding: 80px 0;
+      background: #f9f9f9;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-header h2 {
+      font-size: 2.8rem;
+      color: #008080;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-header h2:after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: #40E0D0;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .section-header p {
+      color: #666;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .courses-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .course-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.07);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .course-card:hover {
+      box-shadow: 0 10px 40px rgba(64,224,208,0.12);
+      transform: translateY(-6px) scale(1.01);
+    }
+    .course-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .course-content {
+      padding: 32px 28px 28px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .course-content h3 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .course-content p {
+      color: #444;
+      font-size: 1.08rem;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .subcourses-list {
+      margin-bottom: 18px;
+    }
+    .subcourse-badge {
+      display: inline-block;
+      background: #e0f7f5;
+      color: #008080;
+      border-radius: 12px;
+      padding: 6px 14px;
+      font-size: 0.95rem;
+      margin: 0 6px 7px 0;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      box-shadow: 0 1px 6px rgba(32, 178, 170, 0.10);
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .subcourse-badge:hover {
+      background: #40E0D0;
+      color: white;
+    }
+    .btn-enroll {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #20B2AA;
+      color: white;
+      padding: 14px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 18px;
+      transition: all 0.3s;
+      border: none;
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(64, 224, 208, 0.2);
+    }
+    .btn-enroll i {
+      margin-left: 8px;
+      transition: transform 0.3s;
+    }
+    .btn-enroll:hover {
+      background: #1E90FF;
+      color: #fff;
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 7px 20px rgba(30, 144, 255, 0.12);
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 992px) {
+      .courses-container { grid-template-columns: 1fr; }
+      .page-hero h1 { font-size: 2.2rem; }
+      .page-hero p { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.jpg" alt="Artbeat Logo" class="logo-img">
+        <span>Artbeat</span>
+      </a>
+      <button class="menu-btn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html" class="active">Courses</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Our Courses</h1>
+      <p>Discover a variety of creative programs designed to inspire and develop your artistic skills.</p>
+    </div>
+  </section>
+
+  <section class="courses-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Explore Our Programs</h2>
+        <p>Choose from a range of art, music, and digital courses for all ages and skill levels.</p>
+      </div>
+      <div class="courses-container">
+        <div class="course-card expandable-card" id="drawing-course-card">
+  <img src="assets/images/paintings/25.webp" alt="Drawing Course" />
+  <div class="course-content">
+    <h3>Drawing Course <span class="age-badge">Ages 5+</span></h3>
+    <p class="course-summary">Fun step-by-step drawing for all ages!</p>
+    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+    <button class="expand-btn" id="open-drawing-modal">View Details <i class="fas fa-chevron-right"></i></button>
+
+  </div>
+</div>
+
+<div class="course-card expandable-card" id="painting-course-card">
+  <img src="assets/images/courses/painting.jpg" alt="Painting Course" />
+  <div class="course-content">
+    <h3>Painting Course<br><span class="age-badge">Teens & Adults 13+</span></h3>
+    <p class="course-summary">Master painting techniques & discover your artistic voice!</p>
+    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+    <button class="expand-btn" id="open-painting-modal">View Details <i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
+
+<div class="course-card expandable-card" id="calligraphy-course-card">
+  <img src="assets/images/courses/calligraphy.jpg" alt="Calligraphy Course" />
+  <div class="course-content">
+    <h3>Calligraphy Course<br><span class="age-badge">Ages 10+</span></h3>
+    <p class="course-summary">Unlock the art of beautiful writing!</p>
+    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+    <button class="expand-btn" id="open-calligraphy-modal">View Details <i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
+
+<div class="course-card expandable-card" id="handwriting-course-card">
+  <img src="assets/images/courses/handwriting.webp" alt="Handwriting Improvement & Artful Writing" />
+  <div class="course-content">
+    <h3>Handwriting Improvement <br><span class="age-badge">Ages 10+</span></h3>
+    <p class="course-summary">Transform your writing into beautiful, legible, expressive art!</p>
+    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+    <button class="expand-btn" id="open-handwriting-modal">View Details <i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
+
+<div class="course-card expandable-card" id="art-therapy-card">
+  <img src="assets/images/courses/arttheraphy.jpg" alt="Art Therapy: Healing Through Creativity" />
+  <div class="course-content">
+    <h3>Art Therapy <br><span class="age-badge">All Ages</span></h3>
+    <p class="course-summary">Healing through creativity—no art experience needed!</p>
+    
+    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+    <button class="expand-btn" id="open-art-therapy-modal">View Details <i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
+
+<div class="course-card expandable-card" id="piano-course-card">
+  <img src="assets/images/courses/piano.jpg" alt="Piano / Keyboard Course" />
+  <div class="course-content">
+    <h3>Piano / Keyboard <span class="age-badge">Ages 5+ & Adults</span></h3>
+    <p class="course-summary">Unlock musical creativity & confidence—Western style!</p>
+    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+    <button class="expand-btn" id="open-piano-modal">View Details <i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
+
+<div class="course-card expandable-card" id="hindustani-piano-course-card">
+  <img src="assets/images/courses/hindustanipiano.png" alt="Hindustani Classical Piano/Keyboard Course" />
+  <div class="course-content">
+    <h3>Hindustani Classical Piano <span class="age-badge">Ages 5+ & Adults</span></h3>
+    <p class="course-summary">Learn soulful Indian classical music—Gandharva Mahavidyalaya certified!</p>
+    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+    <button class="expand-btn" id="open-hindustani-piano-modal">View Details <i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
+
+<div class="course-card expandable-card" id="hindustani-vocal-course-card">
+  <img src="assets/images/courses/Hindustani Classical Vocal.jpg" alt="Hindustani Classical Vocal Music Course" />
+  <div class="course-content">
+    <h3>Hindustani Classical Vocal <span class="age-badge">Ages 6+ & Adults</span></h3>
+    <p class="course-summary">Discover the divine art of Hindustani classical singing—Gandharva Mahavidyalaya certified!</p>
+    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+    <button class="expand-btn" id="open-hindustani-vocal-modal">View Details <i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
+
+<div class="course-card expandable-card" id="tcc-course-card">
+  <img src="assets/images/courses/tcc-exam.jpg" alt="Technical Certificate Course (Lower Grade Drawing Exam)" />
+  <div class="course-content">
+    <h3>TCC - Lower Grade Drawing <br><span class="age-badge">Class 7+/No Age Limit</span></h3>
+    <p class="course-summary">Govt. of Telangana certified technical drawing course for careers & exams.</p>
+    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+    <button class="expand-btn" id="open-tcc-modal">View Details <i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
+
+<div class="course-card expandable-card" id="guitar-course-card">
+  <img src="assets/images/courses/guitar.jpg" alt="Guitar Course" />
+  <div class="course-content">
+    <h3>Guitar Course <br><span class="age-badge">All Levels</span></h3>
+    <p class="course-summary">Master the art of guitar with step-by-step lessons and expert guidance.</p>
+    <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+    <button class="expand-btn" id="open-guitar-modal">View Details <i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
+
+<!-- Modal for Drawing Course Details (now outside the grid) -->
+<div class="modal-overlay" id="drawing-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-drawing-modal" aria-label="Close">&times;</button>
+    <h3>Drawing Course <span class="age-badge">Ages 5+</span></h3>
+    <div class="modal-summary">Fun, interactive lessons to build drawing skills and creative confidence for all ages!</div>
+    <div class="modal-highlights">
+      <span class="subcourse-badge">Step-by-Step Guidance</span>
+      <span class="subcourse-badge">Creative Projects</span>
+      <span class="subcourse-badge">Personalized Attention</span>
+      <span class="subcourse-badge">Flexible Timing</span>
+      <span class="subcourse-badge">Certification</span>
+    </div>
+    <div class="level-tabs">
+      <button class="level-tab active" data-level="1">Level 1: Beginner</button>
+      <button class="level-tab" data-level="2">Level 2: Intermediate</button>
+      <button class="level-tab" data-level="3">Level 3: Advanced</button>
+    </div>
+    <div class="level-content level-1 active">
+      <h4 class="modal-underline">Level 1: Beginner <span class="level-age">(Ages 5-7)</span></h4>
+      <div class="level-features-grid">
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-shapes"></i></span><span><b> Shapes & Lines:</b> Learn basic shapes, lines, and simple forms</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-cat"></i></span><span><b> Fun Drawing:</b> Cute animals, characters, and doodles</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-palette"></i></span><span><b> Coloring:</b> Crayons and markers for vibrant art</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-swatchbook"></i></span><span><b> Zentangle:</b> Creative patterns and relaxing art</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-child"></i></span><span><b> Confidence:</b> Build hand-eye coordination and confidence</span></div>
+      </div>
+    </div>
+    <div class="level-content level-2">
+      <h4 class="modal-underline">Level 2: Intermediate <span class="level-age">(Ages 8-12)</span></h4>
+      <div class="level-features-grid">
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-pencil-alt"></i></span><span><b> Pencil Shading:</b> HB–10B, textures & blending</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-image"></i></span><span><b> Subjects:</b> Cartoons, anime, landscapes, still life</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-cube"></i></span><span><b> Perspective:</b> Backgrounds, depth & space</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-tint"></i></span><span><b> New Mediums:</b> Watercolors & oil pastels</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-brain"></i></span><span><b> Creativity:</b> Develop observation & imagination</span></div>
+      </div>
+    </div>
+    <div class="level-content level-3">
+      <h4 class="modal-underline">Level 3: Advanced <span class="level-age">(Ages 13+)</span></h4>
+      <div class="level-features-grid">
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-pen-fancy"></i></span><span><b> Freehand:</b> Advanced pencil shading & sketching</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-lightbulb"></i></span><span><b> Realism:</b> Light, shadow, and realistic art</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-user"></i></span><span><b> Portraits:</b> Portrait and figure drawing basics</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-layer-group"></i></span><span><b> Composition:</b> Creative design & layout</span></div>
+        <div class="feature-card"><span class="feature-icon"><i class="fas fa-paint-brush"></i></span><span><b> Traditional Art:</b> Explore classic mediums (optional)</span></div>
+      </div>
+    </div>
+    <div class="course-meta">
+      <ul>
+        <li><b>Duration:</b> 8–12 weeks (flexible options)</li>
+        <li><b>Schedule:</b> Weekly 5 classes (Mon–Fri), 60–90 min each</li>
+        <li><b>Studio Timings:</b> 10am–1pm & 4pm–8pm (Mon–Sat)</li>
+        <li><b>Online:</b> Weekly 3 classes, 30 min each</li>
+        <li><b>Weekend batches & flexible timings available</b></li>
+        <li><b>Materials:</b> Pencils, erasers, sketchbook, colors (list provided)</li>
+        <li><b>Format:</b> In-person or live online</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Painting Course Details -->
+
+<!-- Modal for Guitar Course Details -->
+<div class="modal-overlay" id="guitar-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-guitar-modal" aria-label="Close">&times;</button>
+    <h3>Guitar Course <span class="age-badge">All Levels</span></h3>
+    <div class="modal-summary">Play with confidence, creativity, and passion—beginner to intermediate.</div>
+    <h4 class="modal-underline">Why Choose Our Guitar Course?</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-step-forward"></i></span><span><b> Step-by-Step Learning:</b> From basic chords to advanced techniques</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></span><span><b> Expert Instructors:</b> Personalized feedback and tips</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-clock"></i></span><span><b> Flexible Learning:</b> Study at your own pace</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-music"></i></span><span><b> Play Your Favorite Songs:</b> Master popular songs</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Highlights</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-guitar"></i></span><span><b> Beginner:</b> Guitar parts, tuning, basic chords, strumming, simple songs, finger exercises</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-guitar"></i></span><span><b> Intermediate:</b> Barre/power chords, fingerstyle, picking, theory, backing tracks</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Who Is This Course For?</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-user-plus"></i></span><span>Absolute beginners with no prior experience</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-user-graduate"></i></span><span>Intermediate players looking to improve</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Details</h4>
+    <div class="course-meta">
+      <ul>
+        <li><b>Duration:</b> Ongoing (flexible scheduling)</li>
+        <li><b>Levels:</b> Beginner & Intermediate</li>
+        <li><b>Format:</b> In-person or online (live interactive)</li>
+        <li><b>Class Size:</b> Individual or small group</li>
+        <li><b>Timings:</b> 10am–1pm & 4pm–8pm (Mon–Sat, weekly 3 classes)</li>
+        <li><b>Online:</b> Weekly 3 classes, 30 min each</li>
+        <li><b>Weekend Batches & Flexible Timings available</b></li>
+        <li><b>Contact:</b> 9160127700</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for TCC (Technical Certificate Course, Lower Grade Drawing Exam) Details -->
+<div class="modal-overlay" id="tcc-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-tcc-modal" aria-label="Close">&times;</button>
+    <h3>TCC - Lower Grade Drawing <span class="age-badge">Class 7+/No Age Limit</span></h3>
+    <div class="modal-summary">Government of Telangana certified technical drawing course for careers, exams, and apprenticeships.</div>
+    <h4 class="modal-underline">About the Course</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-user-graduate"></i></span><span><b> Eligibility:</b> Class 7th/8th pass, no upper age limit</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-clock"></i></span><span><b> Duration:</b> 1 year</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-clipboard-check"></i></span><span><b> Exams & Grading:</b> Practical exams, Distinction/First/Second/Pass</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-certificate"></i></span><span><b> Certification:</b> Lower Grade Drawing Certificate (Govt. of Telangana)</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Subjects Covered</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-draw-polygon"></i></span><span>Drawing from Flat Example</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-shapes"></i></span><span>Geometrical Drawing</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-cube"></i></span><span>Object Drawing</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-brain"></i></span><span>Memory Drawing</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-tree"></i></span><span>Painting from Nature</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-apple-alt"></i></span><span>Still Life Painting</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-font"></i></span><span>Decorative Lettering</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-border-style"></i></span><span>Pattern Drawing</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Further Opportunities</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-level-up-alt"></i></span><span>Stepping stone to Higher Grade Drawing exams</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-hard-hat"></i></span><span>Useful for apprenticeships in engineering/construction</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-briefcase"></i></span><span>Recognized for Govt. & Private jobs</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Details</h4>
+    <div class="course-meta">
+      <ul>
+        <li><b>Duration:</b> 1 year</li>
+        <li><b>Format:</b> In-person or online (live interactive)</li>
+        <li><b>Class Size:</b> Small group or individual</li>
+        <li><b>Certification:</b> Lower Grade Drawing Certificate (Directorate of Technical Education, Telangana)</li>
+        <li><b>Exams:</b> Conducted by SBTET, Telangana</li>
+        <li><b>Timings:</b> 10am–1pm & 4pm–8pm (Mon–Sat, weekly 3 classes)</li>
+        <li><b>Online:</b> Weekly 3 classes, 30 min each</li>
+        <li><b>Weekend Batches & Flexible Timings available</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for Hindustani Classical Vocal Music Course Details -->
+<div class="modal-overlay" id="hindustani-vocal-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-hindustani-vocal-modal" aria-label="Close">&times;</button>
+    <h3>Hindustani Classical Vocal <span class="age-badge">Ages 6+ & Adults</span></h3>
+    <div class="modal-summary">Immerse yourself in the timeless tradition of Hindustani classical vocal music—Gandharva Mahavidyalaya certified.</div>
+    <h4 class="modal-underline">Why Learn Hindustani Classical Vocal?</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-landmark"></i></span><span><b> Cultural Heritage:</b> Preserve India's rich musical traditions</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-microphone"></i></span><span><b> Vocal Mastery:</b> Develop perfect sur (pitch) and taal (rhythm)</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-certificate"></i></span><span><b> Certification:</b> Earn ABGM-recognized qualifications</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-heartbeat"></i></span><span><b> Therapeutic Benefits:</b> Improves breathing, concentration & emotional expression</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Structure & Levels</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-seedling"></i></span><span><b> Prarambhik (Beginner, 1yr):</b> Swara gyan, alankars, Raag Bilawal, Keherwa/Dadra</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-book"></i></span><span><b> Praveshika Pratham (Elementary, 1yr):</b> Raags, sargam geeth, theory, Teentaal</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-layer-group"></i></span><span><b> Praveshika Poorna (Intermediate, 1yr):</b> Bandish, bol alap/taan, advanced taals, semi-classical forms</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-graduation-cap"></i></span><span><b> Madhyama & Visharad (Advanced, 3+yrs):</b> Complex raags, improvisation, performance mastery</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">About the Guru</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-user-tie"></i></span><span><b>D. S. Madhusudan Rao:</b> Sangeet Visharad (ABGM), 15+ years teaching</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-microphone-alt"></i></span><span><b>Trained under:</b> Renowned maestros & father D. Sathya Hari, Sitar Maestro</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></span><span><b>Mentorship:</b> Guru-Shishya Parampara, personalized attention</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Details</h4>
+    <div class="course-meta">
+      <ul>
+        <li><b>Format:</b> One-on-one / small group (offline & online)</li>
+        <li><b>Duration:</b> 45–60 min per session (weekly)</li>
+        <li><b>Age Group:</b> 6+ years (children, teens, adults)</li>
+        <li><b>Requirements:</b> Tanpura / Tanpura app, notebook</li>
+        <li><b>Certification:</b> Gandharva Mahavidyalaya (ABGM), Pune</li>
+        <li><b>Exam Prep:</b> Past papers, mock tests, theory, viva</li>
+        <li><b>Performance:</b> Stage opportunities</li>
+        <li><b>Timings:</b> 10am–1pm & 4pm–8pm (Mon–Sat, weekly 3 classes)</li>
+        <li><b>Online:</b> Weekly 3 classes, 30 min each</li>
+        <li><b>Weekend Batches & Flexible Timings available</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for Hindustani Classical Piano/Keyboard Course Details -->
+<div class="modal-overlay" id="hindustani-piano-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-hindustani-piano-modal" aria-label="Close">&times;</button>
+    <h3>Hindustani Classical Piano/Keyboard <span class="age-badge">Ages 5+ & Adults</span></h3>
+    <div class="modal-summary">Learn the soulful art of Hindustani classical music with Gandharva Mahavidyalaya certification.</div>
+    <h4 class="modal-underline">Why Learn Hindustani Classical on Piano?</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-music"></i></span><span><b> Unique Blend:</b> Master Indian Raagas & Taals on a Western instrument</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-wave-square"></i></span><span><b> Strong Foundation:</b> Precision in Sur (pitch) & Laya (rhythm)</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-certificate"></i></span><span><b> Exam Certification:</b> ABGM-recognized qualifications</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-random"></i></span><span><b> Versatile Skills:</b> Play bandishes, bhajans, fusion music</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Structure & Levels</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-seedling"></i></span><span><b> Prarambhik (Beginner, 1yr):</b> Swaras, saptak, alankars, basic raags & taals</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-book"></i></span><span><b> Praveshika Pratham (Elementary, 1yr):</b> Bandish, notations, theory & practicals</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-layer-group"></i></span><span><b> Praveshika Poorna (Intermediate, 2yrs):</b> Advanced raags, taals, tabla coordination</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-graduation-cap"></i></span><span><b> Madhyama & Visharad (Advanced, 3+yrs):</b> Complex raags, improvisation, performance</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">About the Guru</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-user-tie"></i></span><span><b>D. S. Madhusudan Rao:</b> Sangeet Visharad (ABGM), 15+ years teaching</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-microphone-alt"></i></span><span><b>Specialization:</b> Raag-based improvisation & exam training</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></span><span><b>Mentorship:</b> Guru-Shishya Parampara, performance coaching</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Details</h4>
+    <div class="course-meta">
+      <ul>
+        <li><b>Format:</b> One-on-one / small group (offline & online)</li>
+        <li><b>Duration:</b> 45–60 min per session (weekly)</li>
+        <li><b>Age Group:</b> 5+ years (kids, teens, adults)</li>
+        <li><b>Requirements:</b> Piano/Keyboard (5+ octaves recommended)</li>
+        <li><b>Certification:</b> Gandharva Mahavidyalaya (ABGM), Pune</li>
+        <li><b>Exam Prep:</b> Past papers, mock tests, theory & viva</li>
+        <li><b>Performance:</b> Concerts & recordings</li>
+        <li><b>Timings:</b> 10am–1pm & 4pm–8pm (Mon–Sat, weekly 3 classes)</li>
+        <li><b>Online:</b> Weekly 3 classes, 30 min each</li>
+        <li><b>Weekend Batches & Flexible Timings available</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for Piano/Keyboard Course Details -->
+<div class="modal-overlay" id="piano-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-piano-modal" aria-label="Close">&times;</button>
+    <h3>Piano / Keyboard Course <span class="age-badge">Ages 5+ & Adults</span></h3>
+    <div class="modal-summary">Unlock musical creativity & confidence—Western style!</div>
+    <h4 class="modal-underline">Course Highlights</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-child"></i></span><span><b> Age-Appropriate Learning:</b> Structured lessons for kids and adults</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-music"></i></span><span><b> Foundational Skills:</b> Notes, rhythm, hand coordination, posture</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-headphones"></i></span><span><b> Play Popular Songs:</b> Nursery rhymes, movie themes, pop hits</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-tablet-alt"></i></span><span><b> Interactive Technology:</b> Apps and digital tools for practice</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Structure</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-mouse-pointer"></i></span><span><b> Little Mozarts (Ages 5-7):</b> 30-min lessons, finger strength, simple melodies, rhythm</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-user-graduate"></i></span><span><b> Junior Pianists (Ages 8-12):</b> 45-min lessons, chords, scales, two-hand coordination, classical & pop songs</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-user-tie"></i></span><span><b> Teens & Advanced:</b> 60-min lessons, theory, improvisation, composition</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-check-circle"></i></span><span><b> Proven Techniques:</b> Step-by-step, creative, and fun learning</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Details</h4>
+    <div class="course-meta">
+      <ul>
+        <li><b>Duration:</b> Weekly lessons (flexible scheduling)</li>
+        <li><b>Session Length:</b> 30–60 min (based on level)</li>
+        <li><b>Format:</b> In-person or online (live interactive)</li>
+        <li><b>Materials:</b> Provided or guidance on books/keyboard purchase</li>
+        <li><b>Instrument Needed:</b> Keyboard or digital piano (affordable options suggested)</li>
+        <li><b>Class Size:</b> Private or small group</li>
+        <li><b>Timings:</b> 10am–1pm & 4pm–8pm (Mon–Sat)</li>
+        <li><b>Online:</b> Weekly 3 classes, 30 min each</li>
+        <li><b>Weekend Batches & Flexible Timings available</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for Mandala Therapy Details -->
+<div class="modal-overlay" id="mandala-therapy-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-mandala-therapy-modal" aria-label="Close">&times;</button>
+    <h3>Mandala Therapy <span class="age-badge">All Ages</span></h3>
+    <div class="modal-summary">Calm your mind, restore balance, and unlock creativity through mandalas.</div>
+    <h4 class="modal-underline">What is Mandala Therapy?</h4>
+    <div style="margin-bottom:10px;">Mandalas are geometric designs that symbolize wholeness. Creating or coloring mandalas in art therapy helps calm the mind, restore balance, and reveal hidden emotions through color and pattern.</div>
+    <h4 class="modal-underline">How It Works in Sessions</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-circle"></i></span><span><b> Free-Form Mandala Creation:</b> Draw from intuition to express feelings</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-palette"></i></span><span><b> Structured Coloring:</b> Use pre-drawn mandalas for relaxation</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-bullseye"></i></span><span><b> Thematic Mandalas:</b> Focus on healing, gratitude, letting go</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Details</h4>
+    <div class="course-meta">
+      <ul>
+        <li><b>Duration:</b> 4–8 weeks (flexible scheduling)</li>
+        <li><b>Session Length:</b> 1 hour (in-person or online)</li>
+        <li><b>Materials Needed:</b> Coloring sheets, pens, pencils, colors (provided or list given)</li>
+        <li><b>Class Size:</b> One-on-one or small group</li>
+        <li><b>Timings:</b> 10am–1pm & 4pm–8pm (Mon–Sat)</li>
+        <li><b>Online:</b> Weekly 3 classes, 30 min each</li>
+        <li><b>Weekend Batches & Flexible Timings available</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Guided Painting Details -->
+<div class="modal-overlay" id="guided-painting-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-guided-painting-modal" aria-label="Close">&times;</button>
+    <h3>Guided Painting <span class="age-badge">All Ages</span></h3>
+    <div class="modal-summary">Express and release emotions safely through guided painting sessions.</div>
+    <h4 class="modal-underline">What is Guided Painting?</h4>
+    <div style="margin-bottom:10px;">Guided Painting is a therapeutic process where an art therapist gently guides you through painting exercises to express emotions, release pent-up feelings, and gain new perspectives through symbolic imagery.</div>
+    <h4 class="modal-underline">Common Techniques Used</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-heart"></i></span><span><b> Emotion-Based Painting:</b> Paint your happiness as a color</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-water"></i></span><span><b> Intuitive Flow Painting:</b> Let the brush move freely</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-tree"></i></span><span><b> Nature-Inspired Themes:</b> Trees, oceans, or landscapes for grounding</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Details</h4>
+    <div class="course-meta">
+      <ul>
+        <li><b>Duration:</b> 4–8 weeks (flexible scheduling)</li>
+        <li><b>Session Length:</b> 1 hour (in-person or online)</li>
+        <li><b>Materials Needed:</b> Paper, paints, brushes (provided or list given)</li>
+        <li><b>Class Size:</b> One-on-one or small group</li>
+        <li><b>Timings:</b> 10am–1pm & 4pm–8pm (Mon–Sat)</li>
+        <li><b>Online:</b> Weekly 3 classes, 30 min each</li>
+        <li><b>Weekend Batches & Flexible Timings available</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for Art Therapy Details -->
+<div class="modal-overlay" id="art-therapy-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-art-therapy-modal" aria-label="Close">&times;</button>
+    <h3>Art Therapy <span class="age-badge">All Ages</span></h3>
+    <div class="modal-summary">Discover the power of artistic expression for healing and growth. Our Art Therapy program includes specialized approaches to help you find balance and express yourself.</div>
+    <div class="therapy-options">
+      <div class="therapy-option">
+        <h4>Mandala Therapy</h4>
+        <p>Calm your mind and restore balance through the meditative practice of creating mandalas. This therapeutic art form helps reduce stress and promote mindfulness.</p>
+      </div>
+      <div class="therapy-option">
+        <h4>Guided Painting</h4>
+        <p>Experience emotional release and self-discovery through structured painting sessions guided by our experienced art therapists.</p>
+      </div>
+    </div>
+    <h4 class="modal-underline">What is Art Therapy?</h4>
+    <div style="margin-bottom:10px;">Art therapy is a form of psychotherapy that uses creative processes to improve mental, emotional, and physical well-being. Guided by a trained therapist, individuals explore their thoughts and feelings through painting, drawing, sculpting, and other artistic mediums—no prior art experience needed.</div>
+    <h4 class="modal-underline">How Art Therapy Works</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-spa"></i></span><span><b> Reduce Stress & Anxiety:</b> Express emotions safely</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-brain"></i></span><span><b> Process Trauma & Emotions:</b> Heal through art</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-user-check"></i></span><span><b> Improve Self-Awareness:</b> Build confidence and insight</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-lightbulb"></i></span><span><b> Enhance Problem-Solving:</b> Develop creative coping skills</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-hands-helping"></i></span><span><b> Develop Coping Mechanisms:</b> Support for all ages</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Session Types</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-user-friends"></i></span><span><b> One-on-One Therapy:</b> Personalized sessions with a certified therapist</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-users"></i></span><span><b> Group Workshops:</b> Supportive space for shared healing</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-paint-brush"></i></span><span><b> No Artistic Skill Required:</b> Focus on process, not product</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-laptop"></i></span><span><b> Flexible Sessions:</b> In-person or online options</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Details</h4>
+    <div class="course-meta">
+      <ul>
+        <li><b>Duration:</b> 4–12 weeks (customized per client)</li>
+        <li><b>Session Length:</b> 1 hour (flexible)</li>
+        <li><b>Format:</b> In-person or online (live interactive)</li>
+        <li><b>Materials Needed:</b> Basic art supplies (provided or list given on enrollment)</li>
+        <li><b>Class Size:</b> One-on-one or small groups</li>
+        <li><b>Timings:</b> 10am–1pm & 4pm–8pm (Mon–Sat, by appointment)</li>
+        <li><b>Weekend/Evening Sessions & Flexible Timings available</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for Handwriting Course Details -->
+<div class="modal-overlay" id="handwriting-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-handwriting-modal" aria-label="Close">&times;</button>
+    <h3>Handwriting Improvement & Artful Writing <span class="age-badge">Ages 10+</span></h3>
+    <div class="modal-summary">Transform your writing into beautiful, legible, and expressive art!</div>
+    <h4 class="modal-underline">Course Overview</h4>
+    <div style="margin-bottom:10px;">Our Handwriting Improvement & Artful Writing Classes are designed for students aged 10 and above who want to enhance their everyday handwriting while exploring creative lettering techniques. Whether you want to write neatly for school, develop a unique personal style, or blend handwriting with artistic expression, this course provides structured lessons and fun exercises to help you succeed.</div>
+    <h4 class="modal-underline">What You’ll Learn</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-pencil-alt"></i></span><span><b> Foundations of Neat Handwriting:</b> Proper grip, posture, and letter formation</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-tachometer-alt"></i></span><span><b> Speed vs. Legibility:</b> Balancing fast writing with clarity</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-font"></i></span><span><b> Cursive & Print Styles:</b> Improving both traditional and modern handwriting</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-pen-fancy"></i></span><span><b> Creative Lettering Basics:</b> Adding flair to notes, journals, and projects</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-signature"></i></span><span><b> Personalized Handwriting Style:</b> Develop a signature way of writing</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-pencil-ruler"></i></span><span><b> Artistic Applications:</b> Combine handwriting with doodles, borders, and simple calligraphy</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Details</h4>
+    <div class="course-meta">
+      <ul>
+        <li><b>Duration:</b> 4–8 weeks (flexible scheduling)</li>
+        <li><b>Session Length:</b> 1 hour (in-person or online)</li>
+        <li><b>Materials Needed:</b> Single/Double rule Workbook, quality pens/pencils, practice sheets</li>
+        <li><b>Class Size:</b> One-to-one coaching only</li>
+        <li><b>Studio Timings:</b> 10am–1pm & 4pm–8pm (Mon–Fri)</li>
+        <li><b>Online:</b> Weekly 3 classes, 30 min each</li>
+        <li><b>Weekend Batches & Flexible Timings available</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for Calligraphy Course Details -->
+<div class="modal-overlay" id="calligraphy-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-calligraphy-modal" aria-label="Close">&times;</button>
+    <h3>Calligraphy Course <span class="age-badge">Ages 10+</span></h3>
+    <div class="modal-summary">Unlock the art of beautiful writing!</div>
+    <h4 class="modal-underline">Course Overview</h4>
+    <div style="margin-bottom:10px;">Our Calligraphy course is designed for students aged 10+ and adults who want to explore the elegant world of hand-lettering. Whether you're a complete beginner or looking to refine your skills, this course will guide you through the fundamentals of Calligraphy, from basic strokes to creating stunning compositions.</div>
+    <h4 class="modal-underline">What You’ll Learn</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-book-open"></i></span><span><b> Introduction to Calligraphy:</b> History, styles, and tools</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-pen-nib"></i></span><span><b> Basic Strokes & Letterforms:</b> Upstrokes, downstrokes, pressure control</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-font"></i></span><span><b> Modern & Traditional Scripts:</b> Foundational hand, Italic, Copperplate</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-brush"></i></span><span><b> Brush Pen Techniques:</b> Brush pens, chisel markers</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-object-group"></i></span><span><b> Composition & Layout:</b> Greeting cards, quotes, artwork</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-user-edit"></i></span><span><b> Personalized Projects:</b> Create your own calligraphy pieces</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Course Details</h4>
+    <div class="course-meta">
+      <ul>
+        <li><b>Duration:</b> 8 weeks (3 sessions per week)</li>
+        <li><b>Session Length:</b> 1.5 hours</li>
+        <li><b>Materials Needed:</b> Brush Pens, Chisel Markers, Practice sheets</li>
+        <li><b>Class Size:</b> One-to-one personal coaching, no group classes</li>
+        <li><b>Studio Timings:</b> 10am–1pm & 4pm–8pm (Mon–Sat)</li>
+        <li><b>Online:</b> Weekly 3 classes, 30 min each</li>
+        <li><b>Weekend Batches & Flexible Timings available</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="painting-modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <button class="modal-close" id="close-painting-modal" aria-label="Close">&times;</button>
+    <h3>Painting Course <span class="age-badge">Teens & Adults 13+</span></h3>
+    <div class="modal-summary">Discover your artistic voice and master painting techniques & styles!</div>
+    <div class="modal-highlights">
+      <span class="subcourse-badge">Flexible Learning</span>
+      <span class="subcourse-badge">Multiple Mediums</span>
+      <span class="subcourse-badge">Step-by-Step Instruction</span>
+      <span class="subcourse-badge">Portfolio Projects</span>
+      <span class="subcourse-badge">Small Class Sizes</span>
+      <span class="subcourse-badge">Traditional Techniques</span>
+    </div>
+    <h4 class="modal-underline">Core Skills Covered</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-fill-drip"></i></span><span><b> Color Mixing & Theory:</b> Hues, shades, and harmonies</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-paint-brush"></i></span><span><b> Brush Techniques:</b> Strokes, blending, and textures</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-ruler-combined"></i></span><span><b> Composition & Perspective:</b> Depth and balance in artworks</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-sun"></i></span><span><b> Light & Shadow:</b> Realism and dimension</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-paint-roller"></i></span><span><b> Style Exploration:</b> Realism to abstract expressionism</span></div>
+    </div>
+    <h4 class="modal-underline" style="margin-top:22px;">Medium-Specific Techniques</h4>
+    <div class="level-features-grid">
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-brush"></i></span><span><b> Acrylic Painting:</b> Fast-drying, versatile layering</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-water"></i></span><span><b> Watercolor Painting:</b> Washes, wet-on-wet, controlled detail</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-oil-can"></i></span><span><b> Oil Painting:</b> Blending, glazing, slow-drying (optional)</span></div>
+      <div class="feature-card"><span class="feature-icon"><i class="fas fa-paint-brush"></i></span><span><b> Traditional Painting:</b> Warli, Madhubani, etc. (optional)</span></div>
+    </div>
+    <div class="course-meta">
+      <ul>
+        <li><b>Duration:</b> 10–12 weeks (flexible scheduling available)</li>
+        <li><b>Session Length:</b> 1.5–2 hours per class</li>
+        <li><b>Format:</b> In-person or online (live interactive sessions)</li>
+        <li><b>Materials Needed:</b> Basic painting supplies (list provided on enrollment)</li>
+        <li><b>Studio Timings:</b> 10am–1pm & 4pm–8pm. Weekly 3 classes. Mon–Sat</li>
+        <li><b>Online:</b> Weekly 3 classes, 30 min each</li>
+        <li><b>Weekend Batches & Flexible Timings available</b></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .therapy-badge {
+    display: inline-block;
+    background: rgba(64, 224, 208, 0.1);
+    color: #2c3e50;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin: 5px 5px 0 0;
+    font-weight: 500;
+  }
+
+  .therapy-options {
+    margin: 20px 0;
+  }
+
+  .therapy-option {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 3px solid var(--primary-color);
+  }
+
+  .therapy-option h4 {
+    color: var(--secondary-color);
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  .therapy-option p {
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .expandable-card .expand-btn {
+    margin: 18px 0 10px 0;
+    background: #f0f8fa;
+    border: none;
+    color: #008080;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .expandable-card .age-badge {
+    background: #e0f7f5;
+    color: #20B2AA;
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-size: 0.95rem;
+    margin-left: 7px;
+    font-weight: 500;
+  }
+  /* Modal styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(34,40,49,0.72);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+  }
+  .modal-card {
+    background: #fff;
+    border-radius: 18px;
+    width: 500px;
+    height: 500px;
+    max-width: 95vw;
+    max-height: 95vw;
+    min-width: 320px;
+    min-height: 320px;
+    box-shadow: 0 8px 40px rgba(32,178,170,0.17);
+    padding: 32px 24px 18px 24px;
+    position: relative;
+    animation: fadeInUp 0.5s;
+    color: #222831;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 10;
+  }
+  .modal-close:hover { color: #40E0D0; }
+  .modal-card h3 {
+    margin-top: 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #008080;
+  }
+  .modal-summary {
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    color: #333;
+  }
+  .modal-highlights {
+    margin-bottom: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .modal-highlights .subcourse-badge {
+    background: #40E0D0;
+    color: #fff;
+    border-radius: 14px;
+    padding: 4px 12px;
+    font-size: 0.93rem;
+    font-weight: 500;
+  }
+  .modal-card .level-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .modal-card .level-tab {
+    background: #e0f7f5;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 22px;
+    font-weight: 600;
+    color: #008080;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .modal-card .level-tab.active, .modal-card .level-tab:hover {
+    background: #40E0D0;
+    color: #fff;
+  }
+  
+
+
+  .modal-card .level-content {
+    display: none;
+    margin-bottom: 18px;
+    animation: fadeInUp 0.4s;
+  }
+  .modal-card .level-content.active {
+    display: block;
+  }
+  .modal-card .course-meta {
+    background: #f1f6f8;
+    border-left: 4px solid #40E0D0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    font-size: 0.98rem;
+  }
+  .modal-card .course-meta ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .modal-card .course-benefits {
+    color: #008080;
+    font-size: 1rem;
+    margin-bottom: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  @media (max-width: 600px) {
+    .modal-card {
+      width: 90vw;
+      height: 90vw;
+      min-width: unset;
+      min-height: unset;
+      max-width: 99vw;
+      max-height: 99vw;
+      padding: 16px 4vw 10px 4vw;
+    }
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Drawing modal logic
+    const openBtn = document.getElementById('open-drawing-modal');
+    const overlay = document.getElementById('drawing-modal-overlay');
+    const closeBtn = document.getElementById('close-drawing-modal');
+    if(openBtn && overlay && closeBtn) {
+      openBtn.addEventListener('click', function() {
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closeBtn.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      overlay.addEventListener('click', function(e) {
+        if(e.target === overlay) {
+          overlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+    // Tabs inside drawing modal
+    const tabs = document.querySelectorAll('#drawing-modal-overlay .level-tab');
+    const tabContents = document.querySelectorAll('#drawing-modal-overlay .level-content');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        tabContents.forEach(content => content.classList.remove('active'));
+        document.querySelector(`#drawing-modal-overlay .level-${tab.dataset.level}`).classList.add('active');
+      });
+    });
+
+    // Painting modal logic
+    const openPaintingBtn = document.getElementById('open-painting-modal');
+    const paintingOverlay = document.getElementById('painting-modal-overlay');
+    const closePaintingBtn = document.getElementById('close-painting-modal');
+    if(openPaintingBtn && paintingOverlay && closePaintingBtn) {
+      openPaintingBtn.addEventListener('click', function() {
+        paintingOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closePaintingBtn.addEventListener('click', function() {
+        paintingOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      paintingOverlay.addEventListener('click', function(e) {
+        if(e.target === paintingOverlay) {
+          paintingOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Calligraphy modal logic
+    const openCalligraphyBtn = document.getElementById('open-calligraphy-modal');
+    const calligraphyOverlay = document.getElementById('calligraphy-modal-overlay');
+    const closeCalligraphyBtn = document.getElementById('close-calligraphy-modal');
+    if(openCalligraphyBtn && calligraphyOverlay && closeCalligraphyBtn) {
+      openCalligraphyBtn.addEventListener('click', function() {
+        calligraphyOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closeCalligraphyBtn.addEventListener('click', function() {
+        calligraphyOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      calligraphyOverlay.addEventListener('click', function(e) {
+        if(e.target === calligraphyOverlay) {
+          calligraphyOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Handwriting modal logic
+    const openHandwritingBtn = document.getElementById('open-handwriting-modal');
+    const handwritingOverlay = document.getElementById('handwriting-modal-overlay');
+    const closeHandwritingBtn = document.getElementById('close-handwriting-modal');
+    if(openHandwritingBtn && handwritingOverlay && closeHandwritingBtn) {
+      openHandwritingBtn.addEventListener('click', function() {
+        handwritingOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closeHandwritingBtn.addEventListener('click', function() {
+        handwritingOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      handwritingOverlay.addEventListener('click', function(e) {
+        if(e.target === handwritingOverlay) {
+          handwritingOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Art Therapy modal logic
+    const openArtTherapyBtn = document.getElementById('open-art-therapy-modal');
+    const artTherapyOverlay = document.getElementById('art-therapy-modal-overlay');
+    const closeArtTherapyBtn = document.getElementById('close-art-therapy-modal');
+    if(openArtTherapyBtn && artTherapyOverlay && closeArtTherapyBtn) {
+      openArtTherapyBtn.addEventListener('click', function() {
+        artTherapyOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closeArtTherapyBtn.addEventListener('click', function() {
+        artTherapyOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      artTherapyOverlay.addEventListener('click', function(e) {
+        if(e.target === artTherapyOverlay) {
+          artTherapyOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Mandala Therapy modal logic
+    const openMandalaTherapyBtn = document.getElementById('open-mandala-therapy-modal');
+    const mandalaTherapyOverlay = document.getElementById('mandala-therapy-modal-overlay');
+    const closeMandalaTherapyBtn = document.getElementById('close-mandala-therapy-modal');
+    if(openMandalaTherapyBtn && mandalaTherapyOverlay && closeMandalaTherapyBtn) {
+      openMandalaTherapyBtn.addEventListener('click', function() {
+        mandalaTherapyOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closeMandalaTherapyBtn.addEventListener('click', function() {
+        mandalaTherapyOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      mandalaTherapyOverlay.addEventListener('click', function(e) {
+        if(e.target === mandalaTherapyOverlay) {
+          mandalaTherapyOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Guided Painting modal logic
+    const openGuidedPaintingBtn = document.getElementById('open-guided-painting-modal');
+    const guidedPaintingOverlay = document.getElementById('guided-painting-modal-overlay');
+    const closeGuidedPaintingBtn = document.getElementById('close-guided-painting-modal');
+    if(openGuidedPaintingBtn && guidedPaintingOverlay && closeGuidedPaintingBtn) {
+      openGuidedPaintingBtn.addEventListener('click', function() {
+        guidedPaintingOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closeGuidedPaintingBtn.addEventListener('click', function() {
+        guidedPaintingOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      guidedPaintingOverlay.addEventListener('click', function(e) {
+        if(e.target === guidedPaintingOverlay) {
+          guidedPaintingOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Piano modal logic
+    const openPianoBtn = document.getElementById('open-piano-modal');
+    const pianoOverlay = document.getElementById('piano-modal-overlay');
+    const closePianoBtn = document.getElementById('close-piano-modal');
+    if(openPianoBtn && pianoOverlay && closePianoBtn) {
+      openPianoBtn.addEventListener('click', function() {
+        pianoOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closePianoBtn.addEventListener('click', function() {
+        pianoOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      pianoOverlay.addEventListener('click', function(e) {
+        if(e.target === pianoOverlay) {
+          pianoOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Hindustani Piano modal logic
+    const openHindustaniPianoBtn = document.getElementById('open-hindustani-piano-modal');
+    const hindustaniPianoOverlay = document.getElementById('hindustani-piano-modal-overlay');
+    const closeHindustaniPianoBtn = document.getElementById('close-hindustani-piano-modal');
+    if(openHindustaniPianoBtn && hindustaniPianoOverlay && closeHindustaniPianoBtn) {
+      openHindustaniPianoBtn.addEventListener('click', function() {
+        hindustaniPianoOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closeHindustaniPianoBtn.addEventListener('click', function() {
+        hindustaniPianoOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      hindustaniPianoOverlay.addEventListener('click', function(e) {
+        if(e.target === hindustaniPianoOverlay) {
+          hindustaniPianoOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Hindustani Vocal modal logic
+    const openHindustaniVocalBtn = document.getElementById('open-hindustani-vocal-modal');
+    const hindustaniVocalOverlay = document.getElementById('hindustani-vocal-modal-overlay');
+    const closeHindustaniVocalBtn = document.getElementById('close-hindustani-vocal-modal');
+    if(openHindustaniVocalBtn && hindustaniVocalOverlay && closeHindustaniVocalBtn) {
+      openHindustaniVocalBtn.addEventListener('click', function() {
+        hindustaniVocalOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closeHindustaniVocalBtn.addEventListener('click', function() {
+        hindustaniVocalOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      hindustaniVocalOverlay.addEventListener('click', function(e) {
+        if(e.target === hindustaniVocalOverlay) {
+          hindustaniVocalOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // TCC modal logic
+    const openTccBtn = document.getElementById('open-tcc-modal');
+    const tccOverlay = document.getElementById('tcc-modal-overlay');
+    const closeTccBtn = document.getElementById('close-tcc-modal');
+    if(openTccBtn && tccOverlay && closeTccBtn) {
+      openTccBtn.addEventListener('click', function() {
+        tccOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closeTccBtn.addEventListener('click', function() {
+        tccOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      tccOverlay.addEventListener('click', function(e) {
+        if(e.target === tccOverlay) {
+          tccOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Guitar modal logic
+    const openGuitarBtn = document.getElementById('open-guitar-modal');
+    const guitarOverlay = document.getElementById('guitar-modal-overlay');
+    const closeGuitarBtn = document.getElementById('close-guitar-modal');
+    if(openGuitarBtn && guitarOverlay && closeGuitarBtn) {
+      openGuitarBtn.addEventListener('click', function() {
+        guitarOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+      closeGuitarBtn.addEventListener('click', function() {
+        guitarOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+      guitarOverlay.addEventListener('click', function(e) {
+        if(e.target === guitarOverlay) {
+          guitarOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  });
+</script>
+<!--
+        <div class="course-card">
+          <img src="assets/images/3.webp" alt="Music" />
+          <div class="course-content">
+            <h3>Music</h3>
+            <p>Learn instruments and vocals from experienced musicians in a creative environment.</p>
+            <div class="subcourses-list">
+              <span class="subcourse-badge">Piano</span>
+              <span class="subcourse-badge">Guitar</span>
+              <span class="subcourse-badge">Vocal</span>
+              <span class="subcourse-badge">Drums</span>
+            </div>
+            <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="course-card">
+          <img src="assets/images/paintings/12.webp" alt="Digital Art" />
+          <div class="course-content">
+            <h3>Digital Art</h3>
+            <p>Master modern digital tools to create stunning artwork and designs.</p>
+            <div class="subcourses-list">
+              <span class="subcourse-badge">Graphic Design</span>
+              <span class="subcourse-badge">Animation</span>
+              <span class="subcourse-badge">Digital Illustration</span>
+            </div>
+            <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="course-card">
+          <img src="assets/images/paintings/24.webp" alt="Sculpture" />
+          <div class="course-content">
+            <h3>Sculpture</h3>
+            <p>Shape your imagination with hands-on sculpture sessions using various materials.</p>
+            <div class="subcourses-list">
+              <span class="subcourse-badge">Clay Modeling</span>
+              <span class="subcourse-badge">Paper Mache</span>
+              <span class="subcourse-badge">Wood Carving</span>
+            </div>
+            <a href="contact.html" class="btn-enroll">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>-->
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <h3>Artbeat Institute</h3>
+          <p>Nurturing creativity and artistic expression through quality education in visual and performing arts.</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/share/v/18i3nhzxcF/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/artbeat_artstudio?igsh=bjB3bTR2dmZkbDB3" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.threads.net/@artbeat_artstudio" aria-label="Threads">
+              <img src="https://cdn.simpleicons.org/threads/ffffff" alt="Threads" style="width: 20px; height: 20px;" />
+            </a>            
+            <a href="https://youtube.com/@artbeatartinstitute?si=JaBoRLiemhSOaOiI" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Info</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 3rd floor, Bhaskara Heights,<br>Kranthi Nagar, Hyderabad</p>
+          <p><i class="fas fa-phone"></i> +91 91601 27700</p>
+          <p><i class="fas fa-envelope"></i>  dsmadhu8888@gmail.com</p>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Subscribe to get updates on courses, workshops, and events.</p>
+          <!-- Begin Mailchimp Signup Form -->
+          <form action="https://gmail.us6.list-manage.com/subscribe/post?u=5c0ec96948bd281012adb47cb&amp;id=4b2bff69a5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate newsletter-form" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+              <div class="mc-field-group newsletter-input-group">
+                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Your email address" required>
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                  <input type="text" name="b_5c0ec96948bd281012adb47cb_4b2bff69a5" tabindex="-1" value="">
+                </div>
+                <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="newsletter-btn">
+                  <i class="fas fa-paper-plane"></i> Subscribe
+                </button>
+              </div>
+              <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>
+            </div>
+          </form>
+          <!--End mc_embed_signup-->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Artbeat Institute of Drawing, Painting and Music. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Newsletter form submission
+      const newsletterForm = document.getElementById('mc-embedded-subscribe-form');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get email value
+          const emailInput = document.getElementById('mce-EMAIL');
+          const email = emailInput.value.trim();
+          
+          // Email validation
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailPattern.test(email)) {
+            showAlert('Please enter a valid email address.', 'error');
+            return false;
+          }
+          
+          // Show loading state
+          const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+          const originalBtnText = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+          
+          // Submit form to Mailchimp
+          const formData = new FormData(newsletterForm);
+          
+          fetch(newsletterForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            },
+            mode: 'no-cors' // Important for Mailchimp's CORS policy
+          })
+          .then(response => {
+            // Since we're using no-cors, we can't access the response directly
+            // Show success message regardless (Mailchimp will handle the actual subscription)
+            showAlert('Thank you for subscribing! Please check your email to confirm your subscription.', 'success');
+            newsletterForm.reset();
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            showAlert('There was an error processing your subscription. Please try again later.', 'error');
+          })
+          .finally(() => {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+          });
+        });
+      }
+      
+      // Function to show alert messages
+      function showAlert(message, type) {
+        // Remove any existing alerts
+        const existingAlert = document.querySelector('.alert');
+        if (existingAlert) {
+          existingAlert.remove();
+        }
+        
+        // Create alert element
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type}`;
+        alert.textContent = message;
+        
+        // Style the alert
+        alert.style.position = 'fixed';
+        alert.style.top = '20px';
+        alert.style.right = '20px';
+        alert.style.padding = '15px 25px';
+        alert.style.borderRadius = '5px';
+        alert.style.color = 'white';
+        alert.style.fontWeight = '500';
+        alert.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+        alert.style.zIndex = '1000';
+        alert.style.animation = 'slideIn 0.3s ease-out';
+        
+        // Set background color based on alert type
+        if (type === 'success') {
+          alert.style.backgroundColor = '#4CAF50'; // Green
+        } else if (type === 'error') {
+          alert.style.backgroundColor = '#F44336'; // Red
+        } else {
+          alert.style.backgroundColor = '#2196F3'; // Blue
+        }
+        
+        // Add to document
+        document.body.appendChild(alert);
+        
+        // Remove alert after 5 seconds
+        setTimeout(() => {
+          alert.style.animation = 'fadeOut 0.3s ease-out';
+          setTimeout(() => {
+            alert.remove();
+          }, 300);
+        }, 5000);
+      }
+      
+      // Add animation keyframes
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideIn {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+          from { opacity: 1; transform: translateX(0); }
+          to { opacity: 0; transform: translateX(100%); }
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses - Artbeat Institute</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Additional styles specific to courses page */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .page-hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/gallery-hero.jpg') center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      margin-bottom: 50px;
+    }
+    .page-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1s ease;
+    }
+    .page-hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .page-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      animation: fadeInDown 1s ease;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .page-hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .course-section {
+      padding: 100px 0;
+      background: #f9f9f9;
+    }
+    .courses-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .course-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border-top: 5px solid #40E0D0;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .course-card:hover {
+      box-shadow: 0 15px 40px rgba(64,224,208,0.15);
+      transform: translateY(-6px) scale(1.01);
+    }
+    .course-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 0 0 0 0;
+      margin-bottom: 0;
+    }
+    .course-content {
+      padding: 32px 28px 28px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .course-content h3 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .course-content p {
+      color: #444;
+      font-size: 1.08rem;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .subcourses-list {
+      margin-bottom: 18px;
+    }
+    .subcourse-badge {
+      display: inline-block;
+      background: #e0f7f5;
+      color: #008080;
+      border-radius: 12px;
+      padding: 6px 14px;
+      font-size: 0.95rem;
+      margin: 0 6px 7px 0;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      box-shadow: 0 1px 6px rgba(32, 178, 170, 0.10);
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .subcourse-badge:hover {
+      background: #40E0D0;
+      color: white;
+    }
+    .btn-enroll {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #20B2AA;
+      color: white;
+      padding: 14px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 18px;
+      transition: all 0.3s;
+      border: none;
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(64, 224, 208, 0.2);
+    }
+    .btn-enroll i {
+      margin-left: 8px;
+      transition: transform 0.3s;
+    }
+    .btn-enroll:hover {
+      background: #1E90FF;
+      color: #fff;
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 7px 20px rgba(30, 144, 255, 0.12);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 0 20px;
+    }
+    .section-header h2 {
+      font-size: 2.8rem;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+    .section-header h2:after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: #40E0D0;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    .section-header p {
+      color: #6c757d;
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 25px auto 0;
+      line-height: 1.7;
+    }
+
+    .courses-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+      padding: 0 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .course-category {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border: 1px solid #e9ecef;
+    }
+    
+    .course-category:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .course-header {
+      background: linear-gradient(135deg, #40E0D0, #36D1DC);
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .course-header h3 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .offline-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.25);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-top: 10px;
+      font-weight: 500;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    .course-body {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    
+    .course-body p:first-child {
+      color: #555;
+      line-height: 1.7;
+      margin: 0 0 25px 0;
+      font-size: 1.05rem;
+      min-height: auto;
+    }
+
+    .course-category ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 20px 0;
+    }
+
+    .course-category ul li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 12px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .course-category ul li:before {
+      content: '✓';
+      color: #40E0D0;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    
+    .course-meta {
+      background: #f8fafb;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 0 0 25px 0;
+      border-left: 4px solid #40E0D0;
+      flex-grow: 1;
+    }
+
+    /* Newsletter Form */
+    .newsletter-form {
+      margin-top: 20px;
+    }
+    
+    .newsletter-input-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .newsletter-form input[type="email"]:focus {
+      border-color: #40E0D0;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.2);
+    }
+    
+    .newsletter-btn {
+      background: #40E0D0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .newsletter-btn:hover {
+      background: #35c9bb;
+      transform: translateY(-2px);
+    }
+
+    .course-meta p {
+      margin: 0 0 12px 0;
+      color: #555;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .course-meta p:last-child {
+      margin-bottom: 0;
+    }
+
+    .course-meta p i {
+      margin-right: 12px;
+      color: #40E0D0;
+      margin-top: 4px;
+      min-width: 16px;
+      text-align: center;
+    }
+
+    .course-meta strong {
+      color: #2c3e50;
+      margin-right: 5px;
+      font-weight: 600;
+    }
+
+    .btn-enroll {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #40E0D0;
+      color: white;
+      padding: 14px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: auto;
+      transition: all 0.3s ease;
+      border: 2px solid #40E0D0;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(64, 224, 208, 0.3);
+    }
+    
+    .btn-enroll i {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+    
+    .btn-enroll:hover {
+      background: #36D1DC;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(64, 224, 208, 0.4);
+    }
+    
+    .btn-enroll:hover i {
+      transform: translateX(4px);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+      .courses-container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        max-width: 1000px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .section-header h2 {
+        font-size: 2.2rem;
+      }
+      
+      .section-header p {
+        font-size: 1.1rem;
+      }
+      
+      .courses-container {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .course-category {
+        max-width: 100%;
+      }
+      
+      .course-body {
+        padding: 25px 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .section-header h2 {
+        font-size: 1.8rem;
+      }
+      
+      .section-header p {
+        font-size: 1rem;
+      }
+      
+      .course-header {
+        padding: 20px 15px;
+      }
+      
+      .course-header h3 {
+        font-size: 1.4rem;
+      }
+      
+      .course-meta {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // Gallery-style mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.querySelector('.menu-btn');
+      const navLinks = document.querySelector('.nav-links');
+      menuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        menuBtn.classList.toggle('active');
+      });
+    });
+  </script>
+
+  
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Main JavaScript -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Tab functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const courseCards = document.querySelectorAll('.course-card');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active class from all buttons
+          tabBtns.forEach(b => b.classList.remove('active'));
+          // Add active class to clicked button
+          btn.classList.add('active');
+          
+          const category = btn.getAttribute('data-category');
+          
+          // Show/hide course cards based on category
+          courseCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+          
+          // Show/hide category headers
+          document.querySelectorAll('.course-category').forEach(section => {
+            if (category === 'all') {
+              section.style.display = 'block';
+            } else if (section.id === `${category}-courses`) {
+              section.style.display = 'block';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artbeat Institute</title>
+  <link rel="preload" href="assets/images/logo.jpg" as="image">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.jpg" alt="Artbeat Logo" class="logo-img">
+        <span>Artbeat</span>
+      </a>
+      <button class="menu-btn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+      <h1>Unleash the Artist Within</h1>
+      <p class="tagline">Welcome to Artbeat — where colors dance, melodies soar, and creativity knows no bounds!</p>
+      <div class="hero-buttons">
+        <a href="courses.html" class="btn btn-primary" style="background: #20B2AA; border-color: #20B2AA; padding: 12px 30px; font-size: 1.1rem; font-weight: 600; border-radius: 30px;">Explore Courses</a>
+        <a href="#featured-courses" class="btn btn-primary" style="background: #1E90FF; border-color: #1E90FF; padding: 12px 30px; font-size: 1.1rem; font-weight: 600; border-radius: 30px; margin-left: 15px;">View Programs</a>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    .hero-buttons a {
+      text-decoration: none !important;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      transform: translateZ(0);
+    }
+
+    .hero-buttons a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      z-index: -1;
+    }
+
+    .hero-buttons a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .hero-buttons a:active {
+      transform: translateY(2px) scale(0.98);
+    }
+
+    /* Button-specific colors */
+    .hero-buttons a[href="courses.html"] {
+      background: #20B2AA !important;
+      border-color: #20B2AA !important;
+      box-shadow: 0 4px 15px rgba(32, 178, 170, 0.4);
+    }
+
+    .hero-buttons a[href="#featured-courses"] {
+      background: #1E90FF !important;
+      border-color: #1E90FF !important;
+      box-shadow: 0 4px 15px rgba(30, 144, 255, 0.4);
+    }
+
+    /* Hover effects */
+    .hero-buttons a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Remove outline on focus for better accessibility */
+    .hero-buttons a:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+    }
+  </style>
+
+  <!-- Featured Courses -->
+  <section id="featured-courses" class="featured-courses">
+    <div class="container">
+      <h2>Featured Programs</h2>
+      <div class="course-grid">
+        <div class="course-card">
+          <div class="course-icon">🎨</div>
+          <h3>Fine Arts</h3>
+          <p>Master drawing, painting, and mixed media with our expert instructors. All skill levels welcome.</p>
+          <a href="courses.html#fine-arts" class="btn small">Learn More</a>
+        </div>
+        <div class="course-card">
+          <div class="course-icon">🎹</div>
+          <h3>Music Lessons</h3>
+          <p>Learn piano, guitar, vocals, and more in our state-of-the-art music studios.</p>
+          <a href="courses.html#music" class="btn small">Discover</a>
+        </div>
+        <div class="course-card">
+          <div class="course-icon">🎭</div>
+          <h3>Summer Camps</h3>
+          <p>Join our immersive summer programs for kids and teens. Limited spots available!</p>
+          <a href="courses.html#summer-camps" class="btn small">Register Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview Section -->
+  <section class="about-preview">
+    <div class="container">
+      <h2>Why Choose Artbeat?</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <h3>Expert Instructors</h3>
+          <p>Learn from industry professionals with years of teaching and performing experience.</p>
+        </div>
+        <div class="feature">
+          <h3>Flexible Scheduling</h3>
+          <p>Morning, afternoon, and evening classes to fit your busy lifestyle.</p>
+        </div>
+        <div class="feature">
+          <h3>Small Class Sizes</h3>
+          <p>Personalized attention with a maximum of 8 students per class.</p>
+        </div>
+        <div class="feature">
+          <h3>Performance Opportunities</h3>
+          <p>Showcase your talent at our bi-annual recitals and exhibitions.</p>
+        </div>
+      </div>
+      <a href="about.html" class="btn">Our Story</a>
+    </div>
+  </section>
+
+  <!-- Upcoming Events 
+  <section class="events">
+    <div class="container">
+      <h2>Upcoming Events</h2>
+      <div class="event-grid">
+        <div class="event-card">
+          <div class="event-date">JUN 15</div>
+          <div class="event-details">
+            <h3>Summer Art Exhibition</h3>
+            <p>Showcasing student artwork from our spring semester.</p>
+            <a href="#" class="event-link">Learn More →</a>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-date">JUN 22</div>
+          <div class="event-details">
+            <h3>Music Recital Night</h3>
+            <p>An evening of musical performances by our talented students.</p>
+            <a href="#" class="event-link">Learn More →</a>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-date">JUL 5</div>
+          <div class="event-details">
+            <h3>Open House</h3>
+            <p>Tour our facilities and meet our instructors. Free trial classes available!</p>
+            <a href="#" class="event-link">RSVP Now →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>-->
+
+  <!-- Newsletter 
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2>Stay in the Loop</h2>
+        <p>Subscribe to our newsletter for updates on classes, events, and special offers.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit" class="btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>-->
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+  <h2>What Our Students Say</h2>
+  <div class="testimonial-grid">
+    
+    <!-- Art Testimonials -->
+    <div class="testimonial">
+      <p>“I never thought I could paint until I joined Artbeat Institute! ... Highly recommend to anyone, whether you're a beginner or looking to refine your skills!”</p>
+      <h4>- Sarah M. (Beginner Artist)</h4>
+    </div>
+
+    <div class="testimonial">
+      <p>“Artbeat Institute has taken my artwork to the next level... Best art classes I’ve ever attended!”</p>
+      <h4>- Raj K. (Advanced Student)</h4>
+    </div>
+
+    <div class="testimonial">
+      <p>“My son and I enrolled in Artbeat’s weekend classes... Artbeat is more than an institute—it’s a creative family!”</p>
+      <h4>- Priya & Aryan (Parent & Child Students)</h4>
+    </div>
+
+    <div class="testimonial">
+      <p>“After years of painting as a hobby, I wanted professional guidance... I’ve learned more here than in any online course!”</p>
+      <h4>- David L. (Hobbyist Painter)</h4>
+    </div>
+
+    <div class="testimonial">
+      <p>“Thanks to Artbeat’s expert guidance, I was able to build a strong portfolio... Forever grateful!”</p>
+      <h4>- Meera S. (Portfolio Preparation Student)</h4>
+    </div>
+
+    <!-- Music Testimonials -->
+    <div class="testimonial">
+      <p>“Learning piano at Artbeat Institute has been a dream come true!... Now, I can play my favorite songs with confidence—thank you, Artbeat!”</p>
+      <h4>- Riya T. (Adult Piano Learner)</h4>
+    </div>
+
+    <div class="testimonial">
+      <p>“I joined Artbeat’s guitar classes as a complete beginner... Best decision ever for any aspiring guitarist!”</p>
+      <h4>- Arjun P. (Teen Guitar Student)</h4>
+    </div>
+
+    <div class="testimonial">
+      <p>“I always loved singing but lacked confidence... The supportive atmosphere and expert guidance make Artbeat the perfect place to find your voice.”</p>
+      <h4>- Neha S. (Vocal Student)</h4>
+    </div>
+
+    <div class="testimonial">
+      <p>“My 10-year-old looks forward to every class at Artbeat!... Artbeat nurtures talent while keeping the love for music alive!”</p>
+      <h4>- Mrs. Kapoor (Parent of Piano & Vocal Student)</h4>
+    </div>
+
+    <div class="testimonial">
+      <p>“As a budding musician, I wanted to improve both my guitar skills and singing... Now, I write and perform my own songs—thanks to their mentorship and world-class training!”</p>
+      <h4>- Aditya M. (Singer-Songwriter)</h4>
+    </div>
+
+    <div class="testimonial">
+      <p>“Starting music lessons in my 40s felt intimidating... Whether it’s piano melodies or guitar chords, every class leaves me inspired!”</p>
+      <h4>- Deepak R. (Adult Beginner – Guitar & Piano)</h4>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- CTA Section 
+  <section class="cta-section">
+    <div class="container">
+      <h2>Begin Your Artistic Journey Today</h2>
+      <p>Discover your creative potential with our expert-led courses in art and music. Perfect for all skill levels!</p>
+      <div class="cta-buttons">
+        <a href="courses.html" class="btn btn-primary">Explore Our Courses <i class="fas fa-arrow-right"></i></a>
+        <a href="tel:+919160127700" class="btn btn-outline"><i class="fas fa-phone-alt"></i> +91 91601 27700</a>
+      </div>
+    </div>
+  </section>-->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <h3>Artbeat Institute</h3>
+          <p>Nurturing creativity and artistic expression through quality education in visual and performing arts.</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/share/v/18i3nhzxcF/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/artbeat_artstudio?igsh=bjB3bTR2dmZkbDB3" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.threads.net/@artbeat_artstudio" aria-label="Threads"><img src="https://cdn.simpleicons.org/threads/ffffff" alt="Threads" style="width: 20px; height: 20px;" /></a>
+            <a href="https://youtube.com/@artbeatartinstitute?si=JaBoRLiemhSOaOiI" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Info</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 3rd floor, Bhaskara Heights,<br> Kranthi Nagar, Hyderabad</p>
+          <p><i class="fas fa-phone"></i> +91 91601 27700</p>
+          <p><i class="fas fa-envelope"></i> dsmadhu8888@gmail.com</p>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Subscribe to get updates on courses, workshops, and events.</p>
+          <!-- Begin Mailchimp Signup Form -->
+          <form action="https://gmail.us6.list-manage.com/subscribe/post?u=5c0ec96948bd281012adb47cb&amp;id=4b2bff69a5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate newsletter-form" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+              <div class="mc-field-group newsletter-input-group">
+                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Your email address" required>
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                  <input type="text" name="b_5c0ec96948bd281012adb47cb_4b2bff69a5" tabindex="-1" value="">
+                </div>
+                <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="newsletter-btn">
+                  <i class="fas fa-paper-plane"></i> Subscribe
+                </button>
+              </div>
+              <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>
+            </div>
+          </form>
+          <!--End mc_embed_signup-->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Artbeat Institute of Drawing, Painting and Music. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Newsletter form submission
+      const newsletterForm = document.getElementById('mc-embedded-subscribe-form');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get email value
+          const emailInput = document.getElementById('mce-EMAIL');
+          const email = emailInput.value.trim();
+          
+          // Email validation
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailPattern.test(email)) {
+            showAlert('Please enter a valid email address.', 'error');
+            return false;
+          }
+          
+          // Show loading state
+          const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+          const originalBtnText = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+          
+          // Submit form to Mailchimp
+          const formData = new FormData(newsletterForm);
+          
+          fetch(newsletterForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            },
+            mode: 'no-cors' // Important for Mailchimp's CORS policy
+          })
+          .then(response => {
+            // Since we're using no-cors, we can't access the response directly
+            // Show success message regardless (Mailchimp will handle the actual subscription)
+            showAlert('Thank you for subscribing! Please check your email to confirm your subscription.', 'success');
+            newsletterForm.reset();
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            showAlert('There was an error processing your subscription. Please try again later.', 'error');
+          })
+          .finally(() => {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+          });
+        });
+      }
+      
+      // Function to show alert messages
+      function showAlert(message, type) {
+        // Remove any existing alerts
+        const existingAlert = document.querySelector('.alert');
+        if (existingAlert) {
+          existingAlert.remove();
+        }
+        
+        // Create alert element
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type}`;
+        alert.textContent = message;
+        
+        // Style the alert
+        alert.style.position = 'fixed';
+        alert.style.top = '20px';
+        alert.style.right = '20px';
+        alert.style.padding = '15px 25px';
+        alert.style.borderRadius = '5px';
+        alert.style.color = 'white';
+        alert.style.fontWeight = '500';
+        alert.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+        alert.style.zIndex = '1000';
+        alert.style.animation = 'slideIn 0.3s ease-out';
+        
+        // Set background color based on alert type
+        if (type === 'success') {
+          alert.style.backgroundColor = '#4CAF50'; // Green
+        } else if (type === 'error') {
+          alert.style.backgroundColor = '#F44336'; // Red
+        } else {
+          alert.style.backgroundColor = '#2196F3'; // Blue
+        }
+        
+        // Add to document
+        document.body.appendChild(alert);
+        
+        // Remove alert after 5 seconds
+        setTimeout(() => {
+          alert.style.animation = 'fadeOut 0.3s ease-out';
+          setTimeout(() => {
+            alert.remove();
+          }, 300);
+        }, 5000);
+      }
+      
+      // Add animation keyframes
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideIn {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+          from { opacity: 1; transform: translateX(0); }
+          to { opacity: 0; transform: translateX(100%); }
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>

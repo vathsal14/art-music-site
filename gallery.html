@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Artbeat Institute</title>
+  <link rel="preload" href="assets/images/logo.jpg" as="image">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Page Hero */
+    .page-hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gallery-hero.jpg') center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      margin-bottom: 50px;
+    }
+
+    .page-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1s ease;
+    }
+
+    .page-hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Newsletter Form */
+    .newsletter-form {
+      margin-top: 20px;
+    }
+    
+    .newsletter-input-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .newsletter-form input[type="email"]:focus {
+      border-color: #40E0D0;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.2);
+    }
+    
+    .newsletter-btn {
+      background: #40E0D0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .newsletter-btn:hover {
+      background: #35c9bb;
+      transform: translateY(-2px);
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      padding: 80px 0;
+      background: #f9f9f9;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-header h2 {
+      font-size: 2.8rem;
+      color: #008080;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2:after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: #40E0D0;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-header p {
+      color: #666;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Filter Buttons */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      background: white;
+      border: 2px solid #40E0D0;
+      color: #40E0D0;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #40E0D0;
+      color: white;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 0 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      aspect-ratio: 1/1;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay h4 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-overlay p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      transform: translateY(20px);
+      transition: transform 0.3s ease 0.1s;
+      opacity: 0.9;
+    }
+
+    .gallery-item:hover .gallery-overlay h4,
+    .gallery-item:hover .gallery-overlay p {
+      transform: translateY(0);
+    }
+
+    .view-btn {
+      display: inline-block;
+      padding: 8px 20px;
+      background: #40E0D0;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease 0.2s;
+    }
+
+    .gallery-item:hover .view-btn {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .view-btn:hover {
+      background: white;
+      color: #40E0D0;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #40E0D0, #20B2AA);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      margin-top: 80px;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-white {
+      display: inline-block;
+      background: white;
+      color: #40E0D0;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 2px solid white;
+    }
+
+    .btn-white:hover {
+      background: transparent;
+      color: white;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .page-hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .page-hero p {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      
+      .section-header h2 {
+        font-size: 2.2rem;
+      }
+      
+      .cta-section h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .page-hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .page-hero p {
+        font-size: 1.1rem;
+      }
+      
+      .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .filter-btn {
+        width: 200px;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.jpg" alt="Artbeat Logo" class="logo-img">
+        <span>Artbeat</span>
+      </a>
+      <button class="menu-btn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Our Creative Gallery</h1>
+      <p>Explore the beautiful artworks created by our talented students and instructors</p>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Artwork Showcase</h2>
+        <p>Browse through our collection of paintings, drawings, and creative works from our talented community</p>
+      </div>
+      
+      <!-- Filter Buttons -->
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="paintings">Paintings</button>
+        <button class="filter-btn" data-filter="chld_work">Student Works</button>
+      </div>
+      
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Inspired by What You See?</h2>
+      <p>Join our creative community and start your artistic journey today. No experience necessary!</p>
+      <a href="courses.html" class="btn-white">Explore Our Courses</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <h3>Artbeat Institute</h3>
+          <p>Nurturing creativity and artistic expression through quality education in visual and performing arts.</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/share/v/18i3nhzxcF/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/artbeat_artstudio?igsh=bjB3bTR2dmZkbDB3" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.threads.net/@artbeat_artstudio" aria-label="Threads">
+              <img src="https://cdn.simpleicons.org/threads/ffffff" alt="Threads" style="width: 20px; height: 20px;" />
+            </a>            
+            <a href="https://youtube.com/@artbeatartinstitute?si=JaBoRLiemhSOaOiI" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Info</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 3rd floor, Bhaskara Heights,<br>Kranthi Nagar, Hyderabad</p>
+          <p><i class="fas fa-phone"></i> +91 91601 27700</p>
+          <p><i class="fas fa-envelope"></i> dsmadhu8888@gmail.com</p>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Subscribe to get updates on courses, workshops, and events.</p>
+          <!-- Begin Mailchimp Signup Form -->
+          <form action="https://gmail.us6.list-manage.com/subscribe/post?u=5c0ec96948bd281012adb47cb&amp;id=4b2bff69a5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate newsletter-form" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+              <div class="mc-field-group newsletter-input-group">
+                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Your email address" required>
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                  <input type="text" name="b_5c0ec96948bd281012adb47cb_4b2bff69a5" tabindex="-1" value="">
+                </div>
+                <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="newsletter-btn">
+                  <i class="fas fa-paper-plane"></i> Subscribe
+                </button>
+              </div>
+              <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>
+            </div>
+          </form>
+          <!--End mc_embed_signup-->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Artbeat Institute of Drawing, Painting and Music. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Main JavaScript -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Newsletter form submission
+      const newsletterForm = document.getElementById('mc-embedded-subscribe-form');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get email value
+          const emailInput = document.getElementById('mce-EMAIL');
+          const email = emailInput.value.trim();
+          
+          // Email validation
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailPattern.test(email)) {
+            showAlert('Please enter a valid email address.', 'error');
+            return false;
+          }
+          
+          // Show loading state
+          const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+          const originalBtnText = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+          
+          // Submit form to Mailchimp
+          const formData = new FormData(newsletterForm);
+          
+          fetch(newsletterForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            },
+            mode: 'no-cors' // Important for Mailchimp's CORS policy
+          })
+          .then(response => {
+            // Since we're using no-cors, we can't access the response directly
+            // Show success message regardless (Mailchimp will handle the actual subscription)
+            showAlert('Thank you for subscribing! Please check your email to confirm your subscription.', 'success');
+            newsletterForm.reset();
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            showAlert('There was an error processing your subscription. Please try again later.', 'error');
+          })
+          .finally(() => {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+          });
+        });
+      }
+      
+      // Function to show alert messages
+      function showAlert(message, type) {
+        // Remove any existing alerts
+        const existingAlert = document.querySelector('.alert');
+        if (existingAlert) {
+          existingAlert.remove();
+        }
+        
+        // Create alert element
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type}`;
+        alert.textContent = message;
+        
+        // Style the alert
+        alert.style.position = 'fixed';
+        alert.style.top = '20px';
+        alert.style.right = '20px';
+        alert.style.padding = '15px 25px';
+        alert.style.borderRadius = '5px';
+        alert.style.color = 'white';
+        alert.style.fontWeight = '500';
+        alert.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+        alert.style.zIndex = '1000';
+        alert.style.animation = 'slideIn 0.3s ease-out';
+        
+        // Set background color based on alert type
+        if (type === 'success') {
+          alert.style.backgroundColor = '#4CAF50'; // Green
+        } else if (type === 'error') {
+          alert.style.backgroundColor = '#F44336'; // Red
+        } else {
+          alert.style.backgroundColor = '#2196F3'; // Blue
+        }
+        
+        // Add to document
+        document.body.appendChild(alert);
+        
+        // Remove alert after 5 seconds
+        setTimeout(() => {
+          alert.style.animation = 'fadeOut 0.3s ease-out';
+          setTimeout(() => {
+            alert.remove();
+          }, 300);
+        }, 5000);
+      }
+      
+      // Add animation keyframes
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideIn {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+          from { opacity: 1; transform: translateX(0); }
+          to { opacity: 0; transform: translateX(100%); }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      // Gallery functionality
+      const galleryGrid = document.querySelector('.gallery-grid');
+      const filterButtons = document.querySelectorAll('.filter-btn');
+
+      // Function to check if an image exists
+      function imageExists(url) {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = url;
+        });
+      }
+
+      // Function to get the correct image URL with format fallback
+      async function getImageUrl(basePath, index) {
+        const webpUrl = `${basePath}${index}.webp`;
+        const jpgUrl = `${basePath}${index}.jpg`;
+        
+        // Check if WebP exists first
+        const webpExists = await imageExists(webpUrl);
+        if (webpExists) return webpUrl;
+        
+        // Fall back to JPG if WebP doesn't exist
+        const jpgExists = await imageExists(jpgUrl);
+        if (jpgExists) return jpgUrl;
+        
+        // If neither exists, return null
+        return null;
+      }
+
+      // Function to create gallery items for a folder
+      async function createItemsForFolder(folder, count, altPrefix) {
+        const items = [];
+        const basePath = `assets/images/${folder}/`;
+        
+        for (let i = 1; i <= count; i++) {
+          const imgUrl = await getImageUrl(basePath, i);
+          if (!imgUrl) continue;
+          
+          const galleryItem = document.createElement('div');
+          galleryItem.className = 'gallery-item';
+          galleryItem.setAttribute('data-category', folder);
+          
+          const img = document.createElement('img');
+          img.src = imgUrl;
+          img.alt = `${altPrefix} ${i}`;
+          img.loading = 'lazy';
+          
+          // Add smooth fade-in effect
+          img.style.opacity = '0';
+          img.style.transition = 'opacity 0.3s ease-in-out';
+          img.onload = () => {
+            img.style.opacity = '1';
+          };
+          
+          galleryItem.appendChild(img);
+          items.push(galleryItem);
+        }
+        
+        return items;
+      }
+
+      // Function to show items for a specific category
+      async function showCategory(category) {
+        galleryGrid.innerHTML = '';
+        
+        if (category === 'paintings') {
+          const paintingItems = await createItemsForFolder('paintings', 81, 'Painting');
+          paintingItems.forEach(item => galleryGrid.appendChild(item));
+        } else if (category === 'chld_work') {
+          const childWorkItems = await createItemsForFolder('chld_work', 14, 'Student Work');
+          childWorkItems.forEach(item => galleryGrid.appendChild(item));
+        }
+      }
+
+      // Event listeners for filter buttons
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked button
+          this.classList.add('active');
+          // Show selected category
+          const category = this.getAttribute('data-filter');
+          showCategory(category);
+        });
+      });
+
+      // Initialize gallery with paintings by default
+      showCategory('paintings');
+    });
+  </script>
+
+</body>
+</html>
