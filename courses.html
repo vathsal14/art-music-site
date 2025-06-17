@@ -216,6 +216,7 @@
       </a>
       <button class="menu-btn" aria-label="Toggle menu">
         <i class="fas fa-bars"></i>
+        <i class="fas fa-times"></i>
       </button>
       <nav>
         <ul class="nav-links">
@@ -1375,7 +1376,7 @@
           <h3>Contact Info</h3>
           <p><i class="fas fa-map-marker-alt"></i> 3rd floor, Bhaskara Heights,<br>Kranthi Nagar, Hyderabad</p>
           <p><i class="fas fa-phone"></i> +91 91601 27700</p>
-          <p><i class="fas fa-envelope"></i>  artbeat.studiohyd@gmail.com</p>
+          <p><i class="fas fa-envelope"></i>artbeat.studiohyd@gmail.com</p>
         </div>
         <div class="footer-newsletter">
           <h4>Newsletter</h4>
@@ -1980,17 +1981,8 @@
   </style>
 </head>
 <body>
-  <script>
-    // Gallery-style mobile menu toggle
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuBtn = document.querySelector('.menu-btn');
-      const navLinks = document.querySelector('.nav-links');
-      menuBtn.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-        menuBtn.classList.toggle('active');
-      });
-    });
-  </script>
+  <!-- Mobile Menu Script -->
+  <script src="assets/js/mobile-menu.js"></script>
 
   
 

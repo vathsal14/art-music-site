@@ -143,25 +143,52 @@
     /* Gallery Grid */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 25px;
-      padding: 0 20px;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 8px;
+      padding: 0 8px;
+    }
+    
+    @media (min-width: 600px) {
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+        padding: 0 12px;
+      }
+    }
+    
+    @media (min-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        padding: 0 15px;
+      }
     }
 
     .gallery-item {
       position: relative;
       overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
       aspect-ratio: 1/1;
       transition: all 0.3s ease;
+      background: #f5f5f5;
+    }
+    
+    .gallery-img-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.5s ease, opacity 0.3s ease;
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .gallery-item:hover {
@@ -369,6 +396,7 @@
       </a>
       <button class="menu-btn" aria-label="Toggle menu">
         <i class="fas fa-bars"></i>
+        <i class="fas fa-times"></i>
       </button>
       <nav>
         <ul class="nav-links">
@@ -602,61 +630,112 @@
       const galleryGrid = document.querySelector('.gallery-grid');
       const filterButtons = document.querySelectorAll('.filter-btn');
 
-      // Function to check if an image exists
-      function imageExists(url) {
-        return new Promise((resolve) => {
+      // Function to preload images
+      function preloadImage(url) {
+        return new Promise((resolve, reject) => {
           const img = new Image();
-          img.onload = () => resolve(true);
-          img.onerror = () => resolve(false);
           img.src = url;
+          img.onload = () => resolve(img);
+          img.onerror = () => {
+            // Fallback to JPG if WebP fails
+            if (url.endsWith('.webp')) {
+              const jpgUrl = url.replace(/\.webp$/, '.jpg');
+              const jpgImg = new Image();
+              jpgImg.src = jpgUrl;
+              jpgImg.onload = () => resolve(jpgImg);
+              jpgImg.onerror = reject;
+            } else {
+              reject();
+            }
+          };
         });
       }
 
       // Function to get the correct image URL with format fallback
-      async function getImageUrl(basePath, index) {
-        const webpUrl = `${basePath}${index}.webp`;
-        const jpgUrl = `${basePath}${index}.jpg`;
-        
-        // Check if WebP exists first
-        const webpExists = await imageExists(webpUrl);
-        if (webpExists) return webpUrl;
-        
-        // Fall back to JPG if WebP doesn't exist
-        const jpgExists = await imageExists(jpgUrl);
-        if (jpgExists) return jpgUrl;
-        
-        // If neither exists, return null
-        return null;
+      function getImageUrl(basePath, index) {
+        // Assume WebP is available and let the browser handle fallback
+        return `${basePath}${index}.webp`;
       }
 
       // Function to create gallery items for a folder
       async function createItemsForFolder(folder, count, altPrefix) {
         const items = [];
         const basePath = `assets/images/${folder}/`;
+        const isMobile = window.innerWidth < 768;
+        const batchSize = isMobile ? 4 : 8; // Load images in smaller batches on mobile
         
+        // Create all items with placeholders first for instant display
         for (let i = 1; i <= count; i++) {
-          const imgUrl = await getImageUrl(basePath, i);
-          if (!imgUrl) continue;
-          
           const galleryItem = document.createElement('div');
           galleryItem.className = 'gallery-item';
           galleryItem.setAttribute('data-category', folder);
           
+          const imgContainer = document.createElement('div');
+          imgContainer.className = 'gallery-img-container';
+          
           const img = document.createElement('img');
-          img.src = imgUrl;
-          img.alt = `${altPrefix} ${i}`;
           img.loading = 'lazy';
+          img.decoding = 'async';
+          img.alt = `${altPrefix} ${i}`;
+          img.width = 400;
+          img.height = 400;
           
-          // Add smooth fade-in effect
+          // Use a small, low-quality placeholder initially
+          img.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNDAwIDQwMCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2YyZjJmMiIvPjwvc3Zn+'; // Tiny transparent 1x1 image
+          img.style.objectFit = 'cover';
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.backgroundColor = '#f5f5f5';
+          img.style.transition = 'opacity 0.3s ease';
           img.style.opacity = '0';
-          img.style.transition = 'opacity 0.3s ease-in-out';
-          img.onload = () => {
-            img.style.opacity = '1';
-          };
           
-          galleryItem.appendChild(img);
+          // Set data attributes for lazy loading
+          img.setAttribute('data-src', getImageUrl(basePath, i));
+          img.setAttribute('data-index', i);
+          
+          imgContainer.appendChild(img);
+          galleryItem.appendChild(imgContainer);
           items.push(galleryItem);
         }
+        
+        // Load images in batches
+        const loadImagesInBatches = async () => {
+          const totalBatches = Math.ceil(count / batchSize);
+          
+          for (let batch = 0; batch < totalBatches; batch++) {
+            const startIdx = batch * batchSize + 1;
+            const endIdx = Math.min((batch + 1) * batchSize, count);
+            
+            // Load next batch of images
+            await Promise.all(
+              Array.from({length: endIdx - startIdx + 1}, (_, i) => {
+                const idx = startIdx + i;
+                const img = items[idx - 1].querySelector('img');
+                const imgUrl = img.getAttribute('data-src');
+                
+                return preloadImage(imgUrl)
+                  .then(loadedImg => {
+                    img.src = loadedImg.src;
+                    img.style.opacity = '1';
+                    img.style.backgroundColor = 'transparent';
+                  })
+                  .catch(() => {
+                    // If WebP fails, the preload function will try JPG
+                    // If both fail, keep the placeholder
+                    img.style.opacity = '1';
+                  });
+              })
+            );
+            
+            // Small delay between batches to prevent UI freezing
+            if (batch < totalBatches - 1) {
+              await new Promise(resolve => setTimeout(resolve, 100));
+            }
+          }
+        };
+        
+        // Start loading images after a small delay to allow initial render
+        setTimeout(loadImagesInBatches, 100);
         
         return items;
       }
@@ -692,5 +771,8 @@
     });
   </script>
 
+  <!-- Mobile Menu Toggle Script -->
+  <!-- Mobile Menu Script -->
+  <script src="assets/js/mobile-menu.js"></script>
 </body>
 </html>
